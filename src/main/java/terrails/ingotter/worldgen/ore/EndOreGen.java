@@ -60,7 +60,7 @@ public class EndOreGen implements IWorldGenerator {
 
         if (condition && ConfigEndHandler.oreGen && world.provider.getDimension() == 1) {
             for (int i = 0; i < chancesToSpawn; i++) {
-                WorldGenerator nether = new WorldGenIngotterMinable(ore, minVeinSize, maxVeinSize, Blocks.END_STONE);
+                WorldGenIngotterMinable nether = new WorldGenIngotterMinable(ore, minVeinSize, maxVeinSize, Blocks.END_STONE);
                 nether.generate(world, random, blockpos);
             }
         }

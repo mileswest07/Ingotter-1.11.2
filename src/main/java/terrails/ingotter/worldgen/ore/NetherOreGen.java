@@ -32,7 +32,7 @@ public class NetherOreGen implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 
         //Vanilla
-        generateOre(ConfigNetherHandler.oreGen, Blocks.QUARTZ_ORE, world, random, chunkX, chunkZ, ConfigNetherHandler.quartzMinY, ConfigNetherHandler.quartzMaxY, ConfigNetherHandler.quartzMinVeinSize, ConfigNetherHandler.quartzMaxVeinSize, ConfigNetherHandler.quartzVeinChance);
+        generateOre(ConfigNetherHandler.quartz, Blocks.QUARTZ_ORE, world, random, chunkX, chunkZ, ConfigNetherHandler.quartzMinY, ConfigNetherHandler.quartzMaxY, ConfigNetherHandler.quartzMinVeinSize, ConfigNetherHandler.quartzMaxVeinSize, ConfigNetherHandler.quartzVeinChance);
 
         //Modded
         generateOre(ConfigNetherHandler.iron, ModOres.oreNetherIron, world, random, chunkX, chunkZ, ConfigNetherHandler.ironMinY, ConfigNetherHandler.ironMaxY, ConfigNetherHandler.ironMinVeinSize, ConfigNetherHandler.ironMaxVeinSize, ConfigNetherHandler.ironVeinChance);

@@ -213,9 +213,9 @@ public class ConfigNetherHandler {
         platinum = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Generate Ore", true).getBoolean();
         platinumMinY = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Min Y Level", 8, "", 1, 256).getInt();
         platinumMaxY = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Max Y Level", 80, "", 1, 256).getInt();
-        platinumMinVeinSize = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Min Vein Size", 3, "", 1, 64).getInt();
-        platinumMaxVeinSize = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Max Vein Size", 5, "", 1, 64).getInt();
-        platinumVeinChance = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Veins Per Chunk", 5, "", 1, 48).getInt();
+        platinumMinVeinSize = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Min Vein Size", 1, "", 1, 64).getInt();
+        platinumMaxVeinSize = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Max Vein Size", 2, "", 1, 64).getInt();
+        platinumVeinChance = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_PLATINUM, "Veins Per Chunk", 3, "", 1, 48).getInt();
 
         //Steel
         steel = configWorld.get(NETHER_ORE + "." +  ORE_NETHER_STEEL, "Generate Ore", false).getBoolean();

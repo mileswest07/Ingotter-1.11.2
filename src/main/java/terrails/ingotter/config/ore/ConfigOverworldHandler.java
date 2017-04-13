@@ -182,7 +182,7 @@ public class ConfigOverworldHandler {
         emeraldMinY = configWorld.get(OVERWORLD_GEN + "." + ORE_EMERALD, "Min Y Level", 4, "", 0, 256).getInt();
         emeraldMaxY = configWorld.get(OVERWORLD_GEN + "." + ORE_EMERALD, "Max Y Level", 32, "", 0, 256).getInt();
         emeraldMinVeinSize = configWorld.get(OVERWORLD_GEN + "." + ORE_EMERALD, "Min Vein Size", 1, "", 0, 64).getInt();
-        emeraldMaxVeinSize = configWorld.get(OVERWORLD_GEN + "." + ORE_EMERALD, "Max Vein Size", 3, "", 0, 64).getInt();
+        emeraldMaxVeinSize = configWorld.get(OVERWORLD_GEN + "." + ORE_EMERALD, "Max Vein Size", 1, "", 0, 64).getInt();
         emeraldVeinChance = configWorld.get(OVERWORLD_GEN + "." + ORE_EMERALD, "Veins Per Chunk", 8, "", 0, 48).getInt();
 
         //Coal
