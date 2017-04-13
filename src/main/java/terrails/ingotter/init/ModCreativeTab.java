@@ -44,7 +44,7 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModItems.hammerTool);
         }
 
-        if(ConfigOverworldHandler.oreGenOverworld && ConfigOreHandler.oreGen) {
+        if(ConfigOverworldHandler.oreGen && ConfigOreHandler.oreGen) {
             this.add(ModOres.oreCopper);
             this.add(ModOres.oreTin);
             this.add(ModOres.oreSilver);
@@ -57,7 +57,7 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModOres.oreBronze);
         }
 
-        if(ConfigNetherHandler.oreGenNether && ConfigOreHandler.oreGen) {
+        if(ConfigNetherHandler.oreGen && ConfigOreHandler.oreGen) {
             this.add(ModOres.oreNetherCopper);
             this.add(ModOres.oreNetherTin);
             this.add(ModOres.oreNetherSilver);
@@ -77,7 +77,7 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModOres.oreNetherCoal);
         }
 
-        if(ConfigEndHandler.oreGenEnd && ConfigOreHandler.oreGen) {
+        if(ConfigEndHandler.oreGen && ConfigOreHandler.oreGen) {
             this.add(ModOres.oreEndCopper);
             this.add(ModOres.oreEndTin);
             this.add(ModOres.oreEndSilver);

@@ -18,7 +18,7 @@ public class ModOreDictionary {
     public static void registerOreDictionary(){
 
         //Ores
-        if(ConfigOreHandler.oreGen && ConfigOverworldHandler.oreGenOverworld){
+        if(ConfigOreHandler.oreGen && ConfigOverworldHandler.oreGen){
         add("oreCopper", ModOres.oreCopper);
         add("oreTin", ModOres.oreTin);
         add("oreSilver", ModOres.oreSilver);
@@ -30,7 +30,7 @@ public class ModOreDictionary {
         add("oreElectrum", ModOres.oreElectrum);
         add("oreBronze", ModOres.oreBronze);}
 
-        if(ConfigOreHandler.oreGen && ConfigNetherHandler.oreGenNether){
+        if(ConfigOreHandler.oreGen && ConfigNetherHandler.oreGen){
         add("oreCopper", ModOres.oreNetherCopper);
         add("oreTin", ModOres.oreNetherTin);
         add("oreSilver", ModOres.oreNetherSilver);
@@ -49,7 +49,7 @@ public class ModOreDictionary {
         add("oreEmerald", ModOres.oreNetherEmerald);
         add("oreCoal", ModOres.oreNetherCoal);}
 
-        if(ConfigOreHandler.oreGen && ConfigEndHandler.oreGenEnd){
+        if(ConfigOreHandler.oreGen && ConfigEndHandler.oreGen){
         add("oreCopper", ModOres.oreEndCopper);
         add("oreTin", ModOres.oreEndTin);
         add("oreSilver", ModOres.oreEndSilver);

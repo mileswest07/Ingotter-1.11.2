@@ -2,7 +2,6 @@ package terrails.ingotter.config;
 
 import net.minecraftforge.common.config.Configuration;
 import terrails.ingotter.Constants;
-
 import java.io.File;
 
 import static terrails.ingotter.config.ore.ConfigEndHandler.oreEndGenConfig;
@@ -36,8 +35,7 @@ public class ConfigOreHandler {
             "\nMin Vein Size [range: 1 ~ 64]" +
             "\nMax Y Level [range: 1 ~ 256]" +
             "\nMin Y Level [range: 1 ~ 256]" +
-            "\nVeins Per Chunk [range: 1 ~ 48]" +
-            "\nPutting vein size lower than 4 will make it spawn 1 or 2 ore's per vein";
+            "\nVeins Per Chunk [range: 1 ~ 48]";
 
     public static void mainOreGenConfig(){
         configWorld.addCustomCategoryComment(WORLD, ORE_GENERATION);

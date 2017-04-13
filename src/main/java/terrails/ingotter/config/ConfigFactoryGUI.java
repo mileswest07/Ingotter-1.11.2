@@ -22,6 +22,7 @@ public class ConfigFactoryGUI implements IModGuiFactory {
     public void initialize(Minecraft minecraftInstance) {
     }
 
+    @SuppressWarnings( "deprecation" )
     @Override
     public Class<? extends GuiScreen> mainConfigGuiClass() {
         return null;
@@ -32,6 +33,7 @@ public class ConfigFactoryGUI implements IModGuiFactory {
         return null;
     }
 
+    @SuppressWarnings( "deprecation" )
     @Override
     public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
         return null;

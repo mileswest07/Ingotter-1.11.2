@@ -148,7 +148,7 @@ public class ConfigEndHandler {
     public static int redstoneVeinChance;
 
     private static String END_ORE = WORLD + "." + END;
-    public static void oreGenConfig()
+    public static void oreEndGenConfig()
     {
         oreGen = configWorld.get(END_ORE, "Generate Everything", true).getBoolean();
 

@@ -157,7 +157,7 @@ public class ConfigNetherHandler {
     public static int quartzVeinChance;
     
     private static String NETHER_ORE = WORLD + "." + NETHER;
-    public static void oreGenConfig()
+    public static void oreNetherGenConfig()
     {
         oreGen = configWorld.get(NETHER_ORE, "Generate Everything", true).getBoolean();
 
