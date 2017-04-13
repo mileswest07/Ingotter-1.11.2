@@ -31,10 +31,10 @@ public class WorldGenIngotterMinable extends WorldGenerator {
         int y = pos.getY() + 8;
         int z = pos.getZ() + 8;
 
-        if(veinSize <= 4){
-            if(blockState.getBlock().isReplaceableOreGen(blockState, world, pos, blockToReplace))
-            return generateSmallVein(world, rand, x, y, z);}
-        else if (veinSize > 4) {
+        if(veinSize < 4){
+            if(blockState.getBlock().isReplaceableOreGen(blockState, world, pos, blockToReplace)){
+            return generateSmallVein(world, rand, x, y, z);}}
+        else if (veinSize >= 4) {
             WorldGenMinable genMinable = new WorldGenMinable(oreToGenerate, veinSize, blockToReplace);
             genMinable.generate(world, rand, pos);
         }
