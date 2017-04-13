@@ -1,0 +1,150 @@
+## English US Localization of Ingot Helper ##
+
+# Ores
+tile.ingotter.lapis_ore_nether.name=Lapis Lazuli Ore
+tile.ingotter.lapis_ore_end.name=Lapis Lazuli Ore
+tile.ingotter.iron_ore_nether.name=Iron Ore
+tile.ingotter.iron_ore_end.name=Iron Ore
+tile.ingotter.emerald_ore_nether.name=Emerald Ore
+tile.ingotter.emerald_ore_end.name=Emerald Ore
+tile.ingotter.gold_ore_nether.name=Gold Ore
+tile.ingotter.gold_ore_end.name=Gold Ore
+tile.ingotter.diamond_ore_nether.name=Diamond Ore
+tile.ingotter.diamond_ore_end.name=Diamond Ore
+tile.ingotter.redstone_ore_nether.name=Redstone Ore
+tile.ingotter.redstone_ore_end.name=Redstone Ore
+tile.ingotter.coal_ore_nether.name=Coal Ore
+tile.ingotter.coal_ore_end.name=Coal Ore
+
+tile.ingotter.copper_ore.name=Copper Ore
+tile.ingotter.tin_ore.name=Tin Ore
+tile.ingotter.silver_ore.name=Silver Ore
+tile.ingotter.lead_ore.name=Lead Ore
+tile.ingotter.aluminum_ore.name=Aluminum Ore
+tile.ingotter.nickel_ore.name=Nickel Ore
+tile.ingotter.platinum_ore.name=Platinum Ore
+tile.ingotter.steel_ore.name=Steel Ore
+tile.ingotter.electrum_ore.name=Electrum Ore
+tile.ingotter.bronze_ore.name=Bronze Ore
+
+tile.ingotter.copper_ore_nether.name=Copper Ore
+tile.ingotter.tin_ore_nether.name=Tin Ore
+tile.ingotter.silver_ore_nether.name=Silver Ore
+tile.ingotter.lead_ore_nether.name=Lead Ore
+tile.ingotter.aluminum_ore_nether.name=Aluminum Ore
+tile.ingotter.nickel_ore_nether.name=Nickel Ore
+tile.ingotter.platinum_ore_nether.name=Platinum Ore
+tile.ingotter.steel_ore_nether.name=Steel Ore
+tile.ingotter.electrum_ore_nether.name=Electrum Ore
+tile.ingotter.bronze_ore_nether.name=Bronze Ore
+
+tile.ingotter.copper_ore_end.name=Copper Ore
+tile.ingotter.tin_ore_end.name=Tin Ore
+tile.ingotter.silver_ore_end.name=Silver Ore
+tile.ingotter.lead_ore_end.name=Lead Ore
+tile.ingotter.aluminum_ore_end.name=Aluminum Ore
+tile.ingotter.nickel_ore_end.name=Nickel Ore
+tile.ingotter.platinum_ore_end.name=Platinum Ore
+tile.ingotter.steel_ore_end.name=Steel Ore
+tile.ingotter.electrum_ore_end.name=Electrum Ore
+tile.ingotter.bronze_ore_end.name=Bronze Ore
+
+# Items
+item.ingotter.hammer.name=Hammer
+item.ingotter.wire_cutters.name=Wire Cutters
+
+item.ingotter.iron_dust.name=Iron Dust
+item.ingotter.gold_dust.name=Gold Dust
+item.ingotter.copper_dust.name=Copper Dust
+item.ingotter.tin_dust.name=Tin Dust
+item.ingotter.silver_dust.name=Silver Dust
+item.ingotter.lead_dust.name=Lead Dust
+item.ingotter.aluminum_dust.name=Aluminum Dust
+item.ingotter.nickel_dust.name=Nickel Dust
+item.ingotter.platinum_dust.name=Platinum Dust
+item.ingotter.steel_dust.name=Steel Dust
+item.ingotter.electrum_dust.name=Electrum Dust
+item.ingotter.bronze_dust.name=Bronze Dust
+item.ingotter.coal_dust.name=Coal Dust
+item.ingotter.diamond_dust.name=Diamond Dust
+item.ingotter.emerald_dust.name=Emerald Dust
+item.ingotter.lapis_dust.name=Lapis Dust
+
+item.ingotter.iron_plate.name=Iron Plate
+item.ingotter.gold_plate.name=Gold Plate
+item.ingotter.tin_plate.name=Tin Dust
+item.ingotter.copper_plate.name=Copper Plate
+item.ingotter.silver_plate.name=Silver Plate
+item.ingotter.lead_plate.name=Lead Plate
+item.ingotter.aluminum_plate.name=Aluminum Plate
+item.ingotter.nickel_plate.name=Nickel Plate
+item.ingotter.platinum_plate.name=Platinum Plate
+item.ingotter.steel_plate.name=Steel Plate
+item.ingotter.electrum_plate.name=Electrum Plate
+item.ingotter.bronze_plate.name=Bronze Plate
+item.ingotter.coal_plate.name=Coal Plate
+item.ingotter.diamond_plate.name=Diamond Plate
+item.ingotter.emerald_plate.name=Emerald Plate
+item.ingotter.redstone_plate.name=Redstone Plate
+item.ingotter.lapis_plate.name=Lapis Plate
+
+# Blocks
+tile.ingotter.copper_block.name=Copper Block
+tile.ingotter.tin_block.name=Tin Block
+tile.ingotter.silver_block.name=Silver Block
+tile.ingotter.lead_block.name=Lead Block
+tile.ingotter.aluminum_block.name=Aluminum Block
+tile.ingotter.nickel_block.name=Nickel Block
+tile.ingotter.platinum_block.name=Platinum Block
+tile.ingotter.steel_block.name=Steel Block
+tile.ingotter.electrum_block.name=Electrum Block
+tile.ingotter.bronze_block.name=Bronze Block
+
+# Ingots
+item.ingotter.copper_ingot.name=Copper Ingot
+item.ingotter.tin_ingot.name=Tin Ingot
+item.ingotter.silver_ingot.name=Silver Ingot
+item.ingotter.lead_ingot.name=Lead Ingot
+item.ingotter.aluminum_ingot.name=Aluminum Ingot
+item.ingotter.nickel_ingot.name=Nickel Ingot
+item.ingotter.platinum_ingot.name=Platinum Ingot
+item.ingotter.steel_ingot.name=Steel Ingot
+item.ingotter.electrum_ingot.name=Electrum Ingot
+item.ingotter.bronze_ingot.name=Bronze Ingot
+
+# Nuggets
+item.ingotter.copper_nugget.name=Copper Nugget
+item.ingotter.tin_nugget.name=Tin Nugget
+item.ingotter.silver_nugget.name=Silver Nugget
+item.ingotter.lead_nugget.name=Lead Nugget
+item.ingotter.aluminum_nugget.name=Aluminum Nugget
+item.ingotter.nickel_nugget.name=Nickel Nugget
+item.ingotter.platinum_nugget.name=Platinum Nugget
+item.ingotter.steel_nugget.name=Steel Nugget
+item.ingotter.electrum_nugget.name=Electrum Nugget
+item.ingotter.bronze_nugget.name=Bronze Nugget
+item.ingotter.coal_nugget.name=Coal Nugget
+item.ingotter.diamond_nugget.name=Diamond Nugget
+item.ingotter.emerald_nugget.name=Emerald Nugget
+item.ingotter.lapis_nugget.name=Lapis Nugget
+
+# Creative Tab
+itemGroup.ingotter=Ingotter
+
+# Config Categories
+config.category.generalSettings.title=General
+config.category.generalWorldGeneration.title=Ore Generation
+
+# Config Category Arrows
+config.category.arrowGeneral.tooltip=You can disable some aspects of the mod here!
+config.category.arrowRecipes.tooltip=Configure Recipes!
+config.category.arrowFeatures.tooltip=Disable and Enable Features!
+
+config.category.arrowCrafting.tooltip=Configure Crafting Recipes!
+config.category.arrowFurnace.tooltip=Configure Furnace Recipes!
+
+config.category.arrowWorldGeneration.tooltip=Putting vein size lower than 4 will make it spawn 1 or 2 ore's per vein!
+config.category.arrowEndOreGen.tooltip=Configure End Ore Generation
+config.category.arrowNetherOreGen.tooltip=Configure Nether Ore Generation
+config.category.arrowOverworldOreGen.tooltip=Configure Overworld Ore Generation
+

@@ -1,0 +1,17 @@
+## English UK Localization of Ingot Helper ##
+
+# Ores
+tile.ingotter.aluminum_ore.name=Aluminium Ore
+
+# Items
+item.ingotter.aluminum_dust.name=Aluminium Dust
+item.ingotter.aluminum_plate.name=Aluminium Plate
+
+# Blocks
+tile.ingotter.aluminum_block.name=Aluminium Block
+
+# Ingots
+item.ingotter.aluminum_ingot.name=Aluminium Ingot
+
+# Nuggets
+item.ingotter.aluminum_nugget.name=Aluminium Nugget

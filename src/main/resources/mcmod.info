@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ingotter",
+  "name": "Ingotter",
+  "description": "Adds all kind of ores, ingots, blocks, nuggets.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Terrails"],
+  "credits": "Terrails for creating the mod",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
