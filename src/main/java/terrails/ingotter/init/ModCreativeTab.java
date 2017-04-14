@@ -158,8 +158,8 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModWires.wireCoal);
             this.add(ModWires.wireDiamond);
             this.add(ModWires.wireEmerald);
-            this.add(ModWires.wireRedstone);
             this.add(ModWires.wireLapis);
+            this.add(ModWires.wireRedstone);
         }
 
         this.add(ModNuggets.nuggetCopper);
