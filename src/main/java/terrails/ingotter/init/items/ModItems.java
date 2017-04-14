@@ -15,7 +15,7 @@ public class ModItems {
     public static void init() {
         Constants.LOGGER.info("Loading Tools...");
         hammerTool = register(new CraftingDurabilityItemBase("hammer", 128, true));
-        wireCutter = register(new CraftingDurabilityItemBase("wire_cutters", 128, ChatFormatting.GREEN + "Work In Progress"));
+        wireCutter = register(new CraftingDurabilityItemBase("wire_cutters", 128, true));
     }
 
     private static <T extends Item> T register(T item) {

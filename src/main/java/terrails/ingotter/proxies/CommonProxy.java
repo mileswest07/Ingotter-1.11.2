@@ -32,8 +32,8 @@ public class CommonProxy {
         ModItems.init();
         ModPlates.init();
         ModDusts.init();
+        ModWires.init();
         FuelHandler.init();
-        //    ModWires.init();
 
         MinecraftForge.EVENT_BUS.register(new ConfigHandler());
         ConfigHandler.init(e.getModConfigurationDirectory());

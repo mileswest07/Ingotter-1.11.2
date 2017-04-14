@@ -88,6 +88,24 @@ item.ingotter.emerald_plate.name=Emerald Plate
 item.ingotter.redstone_plate.name=Redstone Plate
 item.ingotter.lapis_plate.name=Lapis Plate
 
+item.ingotter.iron_wire.name=Iron Wire
+item.ingotter.gold_wire.name=Gold Wire
+item.ingotter.tin_wire.name=Tin Dust
+item.ingotter.copper_wire.name=Copper Wire
+item.ingotter.silver_wire.name=Silver Wire
+item.ingotter.lead_wire.name=Lead Wire
+item.ingotter.aluminum_wire.name=Aluminum Wire
+item.ingotter.nickel_wire.name=Nickel Wire
+item.ingotter.platinum_wire.name=Platinum Wire
+item.ingotter.steel_wire.name=Steel Wire
+item.ingotter.electrum_wire.name=Electrum Wire
+item.ingotter.bronze_wire.name=Bronze Wire
+item.ingotter.coal_wire.name=Coal Wire
+item.ingotter.diamond_wire.name=Diamond Wire
+item.ingotter.emerald_wire.name=Emerald Wire
+item.ingotter.redstone_wire.name=Redstone Wire
+item.ingotter.lapis_wire.name=Lapis Wire
+
 # Blocks
 tile.ingotter.copper_block.name=Copper Block
 tile.ingotter.tin_block.name=Tin Block

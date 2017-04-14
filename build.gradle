@@ -15,7 +15,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 version = modversion
 group = "terrails.ingotter" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Ingotter" + "-" + modversion
+archivesBaseName = "Ingotter"
 
 minecraft {
     version = mcversion + "-" + forgeversion

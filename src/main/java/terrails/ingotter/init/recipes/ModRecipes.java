@@ -33,7 +33,7 @@ public class ModRecipes {
         }
         if (ConfigHandler.hammerwire) {
             crafting.add(ShapedOre(ModItems.hammerTool, "  I", " S ", "S  ", 'I', "ingotIron", 'S', Items.STICK));
-        //    crafting.add(ShapedOre(ModItems.wireCutter, "I I", " S ", "P P", 'I', "ingotIron", 'S', Items.STICK, 'P', planksAll));
+            crafting.add(ShapedOre(ModItems.wireCutter, "I I", " S ", "P P", 'I', "ingotIron", 'S', Items.STICK, 'P', planksAll));
         }
     }
 

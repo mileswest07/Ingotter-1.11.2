@@ -28,6 +28,7 @@ public class ConfigFactoryGUI implements IModGuiFactory {
         return null;
     }
 
+    @SuppressWarnings( "deprecation" )
     @Override
     public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
         return null;

@@ -81,7 +81,6 @@ public class ModSmeltingRecipes {
             addSmelting(ModDusts.diamondDust, new ItemStack(Items.DIAMOND), 0.5f);
             addSmelting(ModDusts.emeraldDust, new ItemStack(Items.EMERALD), 0.5f);
             addSmelting(ModDusts.lapisDust, new ItemStack(Items.DYE, 1, 4), 0.5f);
-            addSmelting(ModDusts.steelDust, new ItemStack(ModIngots.ingotSteel), 0.5f);
         }
 
     }

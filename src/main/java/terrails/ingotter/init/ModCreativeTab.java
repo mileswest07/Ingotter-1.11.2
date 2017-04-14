@@ -17,6 +17,8 @@ import terrails.ingotter.init.blocks.ModBlocks;
 import terrails.ingotter.init.blocks.ModOres;
 import terrails.ingotter.init.items.*;
 
+import java.util.List;
+
 public class ModCreativeTab extends CreativeTabs {
 
     private NonNullList<ItemStack> list;
@@ -42,6 +44,7 @@ public class ModCreativeTab extends CreativeTabs {
 
         if(ConfigHandler.hammerwire) {
             this.add(ModItems.hammerTool);
+            this.add(ModItems.wireCutter);
         }
 
         if(ConfigOverworldHandler.oreGen && ConfigOreHandler.oreGen) {
@@ -137,6 +140,26 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModPlates.plateEmerald);
             this.add(ModPlates.plateLapis);
             this.add(ModPlates.plateRedstone);
+        }
+
+        if(ConfigHandler.metalWires){
+            this.add(ModWires.wireIron);
+            this.add(ModWires.wireGold);
+            this.add(ModWires.wireCopper);
+            this.add(ModWires.wireTin);
+            this.add(ModWires.wireSilver);
+            this.add(ModWires.wireLead);
+            this.add(ModWires.wireAluminum);
+            this.add(ModWires.wireNickel);
+            this.add(ModWires.wirePlatinum);
+            this.add(ModWires.wireSteel);
+            this.add(ModWires.wireElectrum);
+            this.add(ModWires.wireBronze);
+            this.add(ModWires.wireCoal);
+            this.add(ModWires.wireDiamond);
+            this.add(ModWires.wireEmerald);
+            this.add(ModWires.wireRedstone);
+            this.add(ModWires.wireLapis);
         }
 
         this.add(ModNuggets.nuggetCopper);

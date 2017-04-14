@@ -27,6 +27,7 @@ public class ConfigHandler {
     public static boolean ingotToDustRecipe;
     public static boolean oreToDustRecipe;
     public static boolean plateRecipe;
+    public static boolean wireRecipe;
     public static boolean bronzeElectrumSteel;
 
     // Furnace Recipes
@@ -35,6 +36,7 @@ public class ConfigHandler {
     
     // Items and Blocks
     public static boolean metalPlates;
+    public static boolean metalWires;
     public static boolean dusts;
     public static boolean hammerwire;
     public static boolean armor;
@@ -66,6 +68,7 @@ public class ConfigHandler {
         ingotToDustRecipe = config.get(RECIPES + "." + CRAFTING_RECIPES, "Ingot To Dust", true).getBoolean();
         oreToDustRecipe = config.get(RECIPES + "." + CRAFTING_RECIPES, "Ore To Dust", true).getBoolean();
         plateRecipe = config.get(RECIPES + "." + CRAFTING_RECIPES, "Plates", true).getBoolean();
+        wireRecipe = config.get(RECIPES + "." + CRAFTING_RECIPES, "Wires", true).getBoolean();
 
         //Furnace Recipe
         oreToIngotSmelting = config.get(RECIPES + "." + FURNACE_RECIPES, "Ore To Ingot", true).getBoolean();
@@ -73,6 +76,7 @@ public class ConfigHandler {
 
         //Items and Blocks
         metalPlates = config.get(FEATURES, "Plates", true).getBoolean();
+        metalWires = config.get(FEATURES, "Wires", true).getBoolean();
         dusts = config.get(FEATURES, "Dusts", true).getBoolean();
         hammerwire = config.get(FEATURES, "Hammer & Wire Cutters", true).getBoolean();
 

@@ -18,6 +18,7 @@ public class ModShapelessRecipes {
     public static void init() {
         List<IRecipe> crafting = CraftingManager.getInstance().getRecipeList();
         ItemStack hammerTool = new ItemStack(ModItems.hammerTool, 1, OreDictionary.WILDCARD_VALUE);
+        ItemStack wireCutterTool = new ItemStack(ModItems.wireCutter, 1, OreDictionary.WILDCARD_VALUE);
         ItemStack lapis = new ItemStack(Items.DYE, 1, 4);
         ItemStack charcoal = new ItemStack(Items.COAL, 1, 1);
 
@@ -48,24 +49,45 @@ public class ModShapelessRecipes {
         crafting.add(ShapelessOre(new ItemStack(ModNuggets.nuggetEmerald, 9), Items.EMERALD));
         crafting.add(ShapelessOre(new ItemStack(ModNuggets.nuggetLapis, 9), lapis));
 
-        if(ConfigHandler.metalPlates && ConfigHandler.plateRecipe){
-        crafting.add(ShapelessOre(ModPlates.plateIron, hammerTool, "ingotIron", "ingotIron"));
-        crafting.add(ShapelessOre(ModPlates.plateGold, hammerTool, "ingotGold", "ingotGold"));
-        crafting.add(ShapelessOre(ModPlates.plateCopper, hammerTool, "ingotCopper", "ingotCopper"));
-        crafting.add(ShapelessOre(ModPlates.plateTin, hammerTool, "ingotTin", "ingotTin"));
-        crafting.add(ShapelessOre(ModPlates.plateSilver, hammerTool, "ingotSilver", "ingotSilver"));
-        crafting.add(ShapelessOre(ModPlates.plateLead, hammerTool, "ingotLead", "ingotLead"));
-        crafting.add(ShapelessOre(ModPlates.plateAluminum, hammerTool, "ingotAluminum", "ingotAluminum"));
-        crafting.add(ShapelessOre(ModPlates.plateNickel, hammerTool, "ingotNickel", "ingotNickel"));
-        crafting.add(ShapelessOre(ModPlates.platePlatinum, hammerTool, "ingotPlatinum", "ingotPlatinum"));
-        crafting.add(ShapelessOre(ModPlates.plateSteel, hammerTool, "ingotSteel", "ingotSteel"));
-        crafting.add(ShapelessOre(ModPlates.plateElectrum, hammerTool, "ingotElectrum", "ingotElectrum"));
-        crafting.add(ShapelessOre(ModPlates.plateBronze, hammerTool, "ingotBronze", "ingotBronze"));
-        crafting.add(ShapelessOre(ModPlates.plateCoal, hammerTool, Items.COAL, Items.COAL));
-        crafting.add(ShapelessOre(ModPlates.plateDiamond, hammerTool, Items.DIAMOND, Items.DIAMOND));
-        crafting.add(ShapelessOre(ModPlates.plateEmerald, hammerTool, Items.EMERALD, Items.EMERALD));
-        crafting.add(ShapelessOre(ModPlates.plateRedstone, hammerTool, Items.REDSTONE, Items.REDSTONE));
-        crafting.add(ShapelessOre(ModPlates.plateLapis, hammerTool, lapis, lapis));}
+        if(ConfigHandler.metalPlates && ConfigHandler.plateRecipe && ConfigHandler.hammerwire) {
+            crafting.add(ShapelessOre(ModPlates.plateIron, hammerTool, "ingotIron", "ingotIron"));
+            crafting.add(ShapelessOre(ModPlates.plateGold, hammerTool, "ingotGold", "ingotGold"));
+            crafting.add(ShapelessOre(ModPlates.plateCopper, hammerTool, "ingotCopper", "ingotCopper"));
+            crafting.add(ShapelessOre(ModPlates.plateTin, hammerTool, "ingotTin", "ingotTin"));
+            crafting.add(ShapelessOre(ModPlates.plateSilver, hammerTool, "ingotSilver", "ingotSilver"));
+            crafting.add(ShapelessOre(ModPlates.plateLead, hammerTool, "ingotLead", "ingotLead"));
+            crafting.add(ShapelessOre(ModPlates.plateAluminum, hammerTool, "ingotAluminum", "ingotAluminum"));
+            crafting.add(ShapelessOre(ModPlates.plateNickel, hammerTool, "ingotNickel", "ingotNickel"));
+            crafting.add(ShapelessOre(ModPlates.platePlatinum, hammerTool, "ingotPlatinum", "ingotPlatinum"));
+            crafting.add(ShapelessOre(ModPlates.plateSteel, hammerTool, "ingotSteel", "ingotSteel"));
+            crafting.add(ShapelessOre(ModPlates.plateElectrum, hammerTool, "ingotElectrum", "ingotElectrum"));
+            crafting.add(ShapelessOre(ModPlates.plateBronze, hammerTool, "ingotBronze", "ingotBronze"));
+            crafting.add(ShapelessOre(ModPlates.plateCoal, hammerTool, Items.COAL, Items.COAL));
+            crafting.add(ShapelessOre(ModPlates.plateDiamond, hammerTool, Items.DIAMOND, Items.DIAMOND));
+            crafting.add(ShapelessOre(ModPlates.plateEmerald, hammerTool, Items.EMERALD, Items.EMERALD));
+            crafting.add(ShapelessOre(ModPlates.plateRedstone, hammerTool, Items.REDSTONE, Items.REDSTONE));
+            crafting.add(ShapelessOre(ModPlates.plateLapis, hammerTool, lapis, lapis));
+        }
+
+        if(ConfigHandler.metalWires && ConfigHandler.wireRecipe && ConfigHandler.hammerwire) {
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireIron, 3), wireCutterTool, "plateIron"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireGold, 3), wireCutterTool, "plateGold"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireCopper, 3), wireCutterTool, "plateCopper"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireTin, 3), wireCutterTool, "plateTin"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireSilver, 3), wireCutterTool, "plateSilver"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireLead, 3), wireCutterTool, "plateLead"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireAluminum, 3), wireCutterTool, "plateAluminum"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireNickel, 3), wireCutterTool, "plateNickel"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wirePlatinum, 3), wireCutterTool, "platePlatinum"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireSteel, 3), wireCutterTool, "plateSteel"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireElectrum, 3), wireCutterTool, "plateElectrum"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireBronze, 3), wireCutterTool, "plateBronze"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireCoal, 3), wireCutterTool, "plateCoal"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireDiamond, 3), wireCutterTool, "plateDiamond"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireEmerald, 3), wireCutterTool, "plateEmerald"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireRedstone, 3), wireCutterTool, "plateRedstone"));
+            crafting.add(ShapelessOre(new ItemStack(ModWires.wireLapis, 3), wireCutterTool, "plateLapis"));
+        }
 
         if(ConfigHandler.oreToDustRecipe){
         crafting.add(ShapelessOre(new ItemStack(ModDusts.ironDust, 2), hammerTool, "oreIron"));
@@ -105,13 +127,13 @@ public class ModShapelessRecipes {
         crafting.add(ShapelessOre(ModDusts.lapisDust, hammerTool, lapis));}
     }
 
-    public static ShapelessOreRecipe ShapelessOre(Item output, Object... input){
+    private static ShapelessOreRecipe ShapelessOre(Item output, Object... input){
         return new ShapelessOreRecipe(new ItemStack(output), input);
     }
-    public static ShapelessOreRecipe ShapelessOre(Block output, Object... input){
+    private static ShapelessOreRecipe ShapelessOre(Block output, Object... input){
         return new ShapelessOreRecipe(new ItemStack(output), input);
     }
-    public static ShapelessOreRecipe ShapelessOre(ItemStack output, Object... input){
+    private static ShapelessOreRecipe ShapelessOre(ItemStack output, Object... input){
         return new ShapelessOreRecipe(output, input);
     }
 }
