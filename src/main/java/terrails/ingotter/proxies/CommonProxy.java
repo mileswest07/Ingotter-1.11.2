@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import terrails.ingotter.config.ConfigHandler;
 import terrails.ingotter.config.ConfigOreHandler;
+import terrails.ingotter.config.ore.ConfigCustomOreGen;
 import terrails.ingotter.init.FuelHandler;
 import terrails.ingotter.init.blocks.ModBlocks;
 import terrails.ingotter.init.blocks.ModOres;
@@ -17,6 +18,7 @@ import terrails.ingotter.init.recipes.ModRecipes;
 import terrails.ingotter.init.recipes.ModShapedRecipes;
 import terrails.ingotter.init.recipes.ModShapelessRecipes;
 import terrails.ingotter.init.recipes.ModSmeltingRecipes;
+import terrails.ingotter.worldgen.ore.CustomOreGen;
 import terrails.ingotter.worldgen.ore.EndOreGen;
 import terrails.ingotter.worldgen.ore.NetherOreGen;
 import terrails.ingotter.worldgen.ore.OverworldOreGen;
@@ -39,10 +41,15 @@ public class CommonProxy {
         ConfigHandler.init(e.getModConfigurationDirectory());
         ConfigOreHandler.init(e.getModConfigurationDirectory());
 
+        MinecraftForge.EVENT_BUS.register(new ConfigCustomOreGen());
+        ConfigCustomOreGen.init(e.getModConfigurationDirectory());
+
+        MinecraftForge.ORE_GEN_BUS.register(new CustomOreGen());
         MinecraftForge.ORE_GEN_BUS.register(new OverworldOreGen());
         MinecraftForge.ORE_GEN_BUS.register(new NetherOreGen());
         MinecraftForge.ORE_GEN_BUS.register(new EndOreGen());
 
+        GameRegistry.registerWorldGenerator(new CustomOreGen(), 0);
         GameRegistry.registerWorldGenerator(new OverworldOreGen(), 0);
         GameRegistry.registerWorldGenerator(new NetherOreGen(), 0);
         GameRegistry.registerWorldGenerator(new EndOreGen(), 0);

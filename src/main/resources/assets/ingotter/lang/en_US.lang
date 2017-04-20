@@ -118,6 +118,8 @@ tile.ingotter.steel_block.name=Steel Block
 tile.ingotter.electrum_block.name=Electrum Block
 tile.ingotter.bronze_block.name=Bronze Block
 
+tile.ingotter.water_block.name=Water Source
+
 # Ingots
 item.ingotter.copper_ingot.name=Copper Ingot
 item.ingotter.tin_ingot.name=Tin Ingot
@@ -151,7 +153,7 @@ itemGroup.ingotter=Ingotter
 
 # Config Categories
 config.category.generalSettings.title=General
-config.category.generalWorldGeneration.title=Ore Generation
+config.category.generalWorldGeneration.title=World Generation
 
 # Config Category Arrows
 config.category.arrowGeneral.tooltip=You can disable some aspects of the mod here!

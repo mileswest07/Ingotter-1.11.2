@@ -40,6 +40,10 @@ public class ConfigOreHandler {
     public static void mainOreGenConfig(){
         configWorld.addCustomCategoryComment(WORLD, ORE_GENERATION);
         oreGen = configWorld.get(WORLD, "Generate Ores", true).getBoolean();
+
+        if (configWorld.hasChanged()) {
+            configWorld.save();
+        }
     }
 
 }

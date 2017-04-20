@@ -41,6 +41,7 @@ public class ConfigHandler {
     public static boolean hammerwire;
     public static boolean armor;
     public static boolean tools;
+    public static boolean customBlocks;
 
     public static void init(File directory) {
         directory = new File(directory, Constants.MODID);
@@ -79,6 +80,7 @@ public class ConfigHandler {
         metalWires = config.get(FEATURES, "Wires", true).getBoolean();
         dusts = config.get(FEATURES, "Dusts", true).getBoolean();
         hammerwire = config.get(FEATURES, "Hammer & Wire Cutters", true).getBoolean();
+        customBlocks = config.get(FEATURES, "Custom Blocks", true).getBoolean();
 
         if (config.hasChanged()) {
         config.save();

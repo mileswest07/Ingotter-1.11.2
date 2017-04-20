@@ -1,6 +1,7 @@
 package terrails.ingotter.init.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import terrails.ingotter.Constants;
@@ -19,6 +20,8 @@ public class ModBlocks {
     public static BlockBase blockElectrum;
     public static BlockBase blockBronze;
 
+    public static BlockBase waterFullBlock;
+
     public static void init() {
         Constants.LOGGER.info("Loading Blocks...");
         blockCopper = register(new BlockBase("copper_block")).setHarvestLevel(1);
@@ -31,6 +34,8 @@ public class ModBlocks {
         blockSteel = register(new BlockBase("steel_block"));
         blockElectrum = register(new BlockBase("electrum_block"));
         blockBronze = register(new BlockBase("bronze_block"));
+
+        waterFullBlock = register(new BlockBase("water_block", Material.WATER, false));
     }
 
     private static <T extends Block> T register(T block, ItemBlock itemBlock) {

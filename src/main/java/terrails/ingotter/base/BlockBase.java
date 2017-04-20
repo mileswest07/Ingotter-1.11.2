@@ -4,12 +4,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import terrails.ingotter.Constants;
 import terrails.ingotter.Ingotter;
 
 public class BlockBase extends Block {
 
     protected String name;
+    protected boolean replaceable;
 
     public BlockBase(String name, Material material) {
         super(material);
@@ -24,6 +28,11 @@ public class BlockBase extends Block {
     public BlockBase(String name) {
         this(name, Material.IRON);
     }
+    public BlockBase(String name, Material material, boolean replaceable){
+        this(name, material);
+        this.replaceable = replaceable;
+    }
+
     public void registerItemModel(ItemBlock itemBlock) {
         Ingotter.proxy.registerItemRenderer(itemBlock, 0, name);
     }
@@ -37,4 +46,14 @@ public class BlockBase extends Block {
         super.setHarvestLevel("pickaxe", level);
         return this;
     }
+    public boolean isBlockReplaceable(World world, int x, int y, int z)
+    {
+        return replaceable;
+    }
+    @Override
+    public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+        return replaceable;
+    }
+
+
 }
