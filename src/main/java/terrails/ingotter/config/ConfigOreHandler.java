@@ -138,32 +138,6 @@ public class ConfigOreHandler{
         };
     }
 
-    public static String GENERATION_COMMENT() {
-        return "The variables you have to type when adding ores:" +
-                "\nNORMAL [IT WILL GENERATE IN STONE IN ANY DIMENSION, IF DIMENSION ALLOWS IT]" +
-                "\nModID:OreName meta:NUMBER minvein:NUMBER maxvein:NUMBER miny:NUMBER maxy:NUMBER perchunk:NUMBER " +
-                "\nexample: forestry:resources meta:0 minvein:12 maxvein:28 miny:110 maxy:245 perchunk:15" +
-                "\nConfig option above will make forestry appatite ore spawn with vein size in range from 12 to 28 and y level from 110 to 245 " +
-                "\nand it would spawn around 15 ores per chunk, if you change meta to 1 it will spawn copper ore, because forestry uses metadata for ores\n" +
-
-                "\nGENERATE IN DEFINED DIMENSION [IT WILL GENERATE IN STONE IN DEFINED DIMENSION, IF DIMENSION ALLOWS IT]" +
-                "\nModID:OreName meta:NUMBER minvein:NUMBER maxvein:NUMBER miny:NUMBER maxy:NUMBER perchunk:NUMBER dimension:DIM-NUMBER.DIM-NUMBER " +
-                "\nexample: forestry:resources meta:0 minvein:12 maxvein:28 miny:110 maxy:245 perchunk:15 dimension:-1.0.1" +
-                "\nConfig option above will make forestry appetite ore spawn and will replace stone in" +
-                "\n-1 (Nether), 0 (Overworld) and 1 (End) dimension (You need a dot between every dimension number)\n" +
-
-                "\nREPLACE DEFINED BLOCK [IT WILL GENERATE IN DEFINED BLOCK IN ANY DIMENSION, IF DIMENSION ALLOWS IT]" +
-                "\nModID:OreName meta:NUMBER minvein:NUMBER maxvein:NUMBER miny:NUMBER maxy:NUMBER perchunk:NUMBER replace:BLOCK.BLOCK " +
-                "\nexample: forestry:resources meta:0 minvein:12 maxvein:28 miny:110 maxy:245 perchunk:15 replace:minecraft:stone.minecraft:netherrack.minecraft:end_stone" +
-                "\nConfig option above will make forestry appetite ore spawn and will replace Stone, Netherrack and End Stone in any dimension (You need a dot between every block name)\n" +
-
-                "\nREPLACE DEFINED BLOCK IN DEFINED DIMENSION [IT WILL GENERATE IN DEFINED BLOCK IN DEFINED DIMENSION, IF DIMENSION ALLOWS IT]" +
-                "\nModID:OreName meta:NUMBER minvein:NUMBER maxvein:NUMBER miny:NUMBER maxy:NUMBER perchunk:NUMBER replace:BLOCK.ANOTHER_BLOCK.ANOTHER dimension:DIM-NUMBER.DIM-NUMBER" +
-                "\nexample: forestry:resources meta:0 minvein:12 maxvein:28 miny:110 maxy:245 perchunk:15 replace:minecraft:stone.minecraft:netherrack.minecraft:end_stone dimension:-1.0.1 " +
-                "\nThe settings above will generate ores in -1 (Nether), 0 (Overworld) and 1 (End) dimension and " +
-                "\nwill only replace Stone, Netherrack and End Stone (You need a dot between dimension number and block name)";
-    }
-
     private static String CATEGORY_COMMENT(){
         return
                 "The Guide:\n" +
