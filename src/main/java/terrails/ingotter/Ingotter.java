@@ -31,7 +31,7 @@ public class Ingotter {
 
 
         // I use "directory\world" because I have an subdirectory in my config folder and I only want to track that directory
-        Path myDir = Paths.get(event.getModConfigurationDirectory() + File.separator + "world");
+        Path myDir = Paths.get(event.getModConfigurationDirectory() + Constants.MODID + File.separator + "world");
         ConfigWatch.testForConfigChange(myDir);
     }
 
