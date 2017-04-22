@@ -8,9 +8,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import terrails.ingotter.config.ConfigHandler;
 import terrails.ingotter.config.ConfigOreHandler;
-import terrails.ingotter.config.ore.ConfigEndHandler;
-import terrails.ingotter.config.ore.ConfigNetherHandler;
-import terrails.ingotter.config.ore.ConfigOverworldHandler;
 import terrails.ingotter.init.blocks.ModOres;
 import terrails.ingotter.init.items.ModDusts;
 import terrails.ingotter.init.items.ModIngots;
@@ -20,7 +17,7 @@ public class ModSmeltingRecipes {
     public static void init() {
 
         if(ConfigHandler.oreToIngotSmelting) {
-            if (ConfigOreHandler.oreGen && ConfigOverworldHandler.oreGen) {
+            if (ConfigOreHandler.oreBoolean) {
                 addSmelting(ModOres.oreCopper, new ItemStack(ModIngots.ingotCopper), 0.4f);
                 addSmelting(ModOres.oreTin, new ItemStack(ModIngots.ingotTin), 0.4f);
                 addSmelting(ModOres.oreSilver, new ItemStack(ModIngots.ingotSilver), 0.4f);
@@ -33,7 +30,7 @@ public class ModSmeltingRecipes {
                 addSmelting(ModOres.oreBronze, new ItemStack(ModIngots.ingotBronze), 0.8f);
             }
 
-            if (ConfigOreHandler.oreGen && ConfigNetherHandler.oreGen) {
+            if (ConfigOreHandler.oreBoolean) {
                 addSmelting(ModOres.oreNetherCopper, new ItemStack(ModIngots.ingotCopper), 0.5f);
                 addSmelting(ModOres.oreNetherTin, new ItemStack(ModIngots.ingotTin), 0.5f);
                 addSmelting(ModOres.oreNetherSilver, new ItemStack(ModIngots.ingotSilver), 0.5f);
@@ -48,7 +45,7 @@ public class ModSmeltingRecipes {
                 addSmelting(ModOres.oreNetherBronze, new ItemStack(ModIngots.ingotBronze), 0.8f);
             }
 
-            if (ConfigOreHandler.oreGen && ConfigEndHandler.oreGen) {
+            if (ConfigOreHandler.oreBoolean) {
                 addSmelting(ModOres.oreEndCopper, new ItemStack(ModIngots.ingotCopper), 0.8f);
                 addSmelting(ModOres.oreEndTin, new ItemStack(ModIngots.ingotTin), 0.8f);
                 addSmelting(ModOres.oreEndSilver, new ItemStack(ModIngots.ingotSilver), 0.8f);

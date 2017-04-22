@@ -10,14 +10,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import terrails.ingotter.Constants;
 import terrails.ingotter.config.ConfigHandler;
 import terrails.ingotter.config.ConfigOreHandler;
-import terrails.ingotter.config.ore.ConfigEndHandler;
-import terrails.ingotter.config.ore.ConfigNetherHandler;
-import terrails.ingotter.config.ore.ConfigOverworldHandler;
 import terrails.ingotter.init.blocks.ModBlocks;
 import terrails.ingotter.init.blocks.ModOres;
 import terrails.ingotter.init.items.*;
-
-import java.util.List;
 
 public class ModCreativeTab extends CreativeTabs {
 
@@ -47,7 +42,7 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModItems.wireCutter);
         }
 
-        if(ConfigOverworldHandler.oreGen && ConfigOreHandler.oreGen) {
+        if(ConfigOreHandler.oreBoolean) {
             this.add(ModOres.oreCopper);
             this.add(ModOres.oreTin);
             this.add(ModOres.oreSilver);
@@ -60,7 +55,7 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModOres.oreBronze);
         }
 
-        if(ConfigNetherHandler.oreGen && ConfigOreHandler.oreGen) {
+        if(ConfigOreHandler.oreBoolean) {
             this.add(ModOres.oreNetherCopper);
             this.add(ModOres.oreNetherTin);
             this.add(ModOres.oreNetherSilver);
@@ -80,7 +75,7 @@ public class ModCreativeTab extends CreativeTabs {
             this.add(ModOres.oreNetherCoal);
         }
 
-        if(ConfigEndHandler.oreGen && ConfigOreHandler.oreGen) {
+        if(ConfigOreHandler.oreBoolean) {
             this.add(ModOres.oreEndCopper);
             this.add(ModOres.oreEndTin);
             this.add(ModOres.oreEndSilver);

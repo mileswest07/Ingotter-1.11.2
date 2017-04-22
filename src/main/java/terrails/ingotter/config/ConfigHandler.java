@@ -7,13 +7,14 @@ import terrails.ingotter.Constants;
 
 import java.io.File;
 
-import static terrails.ingotter.config.ore.ConfigOverworldHandler.oreOverworldGenConfig;
+import static terrails.ingotter.config.ConfigOreHandler.configIngotter;
+import static terrails.ingotter.config.ConfigOreHandler.configOreVariables;
+import static terrails.ingotter.config.ConfigOreHandler.configWorld;
 
 public class ConfigHandler {
 
     public static Configuration config;
     private static File configDir;
-
 
     public static final String GENERAL_SETTINGS = "General";
     public static final String FEATURES = "Features";
@@ -57,8 +58,15 @@ public class ConfigHandler {
     public void configChanged(ConfigChangedEvent.OnConfigChangedEvent event)
     {
         if (event.getModID().equals(Constants.MODID)) {
-            oreOverworldGenConfig();
             mainConfig();
+            config.save();
+
+            configOreVariables();
+            configWorld.save();
+            configIngotter.save();
+
+            if (configWorld.hasChanged()) {configWorld.save();}
+            if (configIngotter.hasChanged()) {configIngotter.save();}
         }
     }
 

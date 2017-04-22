@@ -26,6 +26,13 @@ public class WorldGenIngotterMinable extends WorldGenerator {
         this.block = blockToReplace.getDefaultState();
     }
 
+    public WorldGenIngotterMinable(IBlockState oreToGenerate, int minVeinSize, int maxVeinSize, Block blockToReplace){
+        this.oreToGenerate = oreToGenerate;
+        this.veinSize = ThreadLocalRandom.current().nextInt(minVeinSize, maxVeinSize + 1);
+        this.blockToReplace = BlockMatcher.forBlock(blockToReplace);
+        this.block = blockToReplace.getDefaultState();
+    }
+
     @Override
     public boolean generate(World world, Random rand, BlockPos pos) {
         int x = pos.getX() + 8;

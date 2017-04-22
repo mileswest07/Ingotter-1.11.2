@@ -163,8 +163,7 @@ config.category.arrowFeatures.tooltip=Disable and Enable Features!
 config.category.arrowCrafting.tooltip=Configure Crafting Recipes!
 config.category.arrowFurnace.tooltip=Configure Furnace Recipes!
 
-config.category.arrowWorldGeneration.tooltip=Putting vein size lower than 4 will make it spawn 1 or 2 ore's per vein!
-config.category.arrowEndOreGen.tooltip=Configure End Ore Generation
-config.category.arrowNetherOreGen.tooltip=Configure Nether Ore Generation
-config.category.arrowOverworldOreGen.tooltip=Configure Overworld Ore Generation
+config.category.arrowWorldGeneration.tooltip=Edit world generation or add an block from other mod. Detailed explanation in config file!
+config.category.arrowCustom.arrowCustom=Add custom ores or edit those you added!
+config.category.arrowCustom.arrowIngotter=Edit or remove ores from Ingotter!
 

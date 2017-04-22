@@ -6,9 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import terrails.ingotter.config.ConfigHandler;
 import terrails.ingotter.config.ConfigOreHandler;
-import terrails.ingotter.config.ore.ConfigEndHandler;
-import terrails.ingotter.config.ore.ConfigNetherHandler;
-import terrails.ingotter.config.ore.ConfigOverworldHandler;
 import terrails.ingotter.init.blocks.ModBlocks;
 import terrails.ingotter.init.blocks.ModOres;
 import terrails.ingotter.init.items.*;
@@ -18,7 +15,7 @@ public class ModOreDictionary {
     public static void registerOreDictionary(){
 
         //Ores
-        if(ConfigOreHandler.oreGen && ConfigOverworldHandler.oreGen){
+        if(ConfigOreHandler.oreBoolean){
         add("oreCopper", ModOres.oreCopper);
         add("oreTin", ModOres.oreTin);
         add("oreSilver", ModOres.oreSilver);
@@ -30,7 +27,7 @@ public class ModOreDictionary {
         add("oreElectrum", ModOres.oreElectrum);
         add("oreBronze", ModOres.oreBronze);}
 
-        if(ConfigOreHandler.oreGen && ConfigNetherHandler.oreGen){
+        if(ConfigOreHandler.oreBoolean){
         add("oreCopper", ModOres.oreNetherCopper);
         add("oreTin", ModOres.oreNetherTin);
         add("oreSilver", ModOres.oreNetherSilver);
@@ -49,7 +46,7 @@ public class ModOreDictionary {
         add("oreEmerald", ModOres.oreNetherEmerald);
         add("oreCoal", ModOres.oreNetherCoal);}
 
-        if(ConfigOreHandler.oreGen && ConfigEndHandler.oreGen){
+        if(ConfigOreHandler.oreBoolean){
         add("oreCopper", ModOres.oreEndCopper);
         add("oreTin", ModOres.oreEndTin);
         add("oreSilver", ModOres.oreEndSilver);

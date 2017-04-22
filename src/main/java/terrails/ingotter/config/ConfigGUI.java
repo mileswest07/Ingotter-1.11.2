@@ -22,12 +22,9 @@ public class ConfigGUI extends GuiConfig {
     private static List<IConfigElement> getConfigElements()
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
-        List<IConfigElement> GENERAL_SETTINGS = new ConfigElement(ConfigHandler.config.getCategory(ConfigHandler.GENERAL_SETTINGS.toLowerCase())).getChildElements();
-        List<IConfigElement> WORLDGEN_SETTINGS = new ConfigElement(ConfigOreHandler.configWorld.getCategory(ConfigOreHandler.WORLD.toLowerCase())).getChildElements();
 
         list.add(new DummyConfigElement.DummyCategoryElement("General Settings", "config.category.arrowGeneral", ConfigCategories.GeneralSettings.class));
-   //     list.add(new DummyConfigElement.DummyCategoryElement("Ore Generation", "config.category.arrowWorldGeneration", ConfigCategories.OreGenSettings.class));
-        list.add(new DummyConfigElement.DummyCategoryElement("Ore Generation", "config.category.arrowWorldGeneration", WORLDGEN_SETTINGS));
+        list.add(new DummyConfigElement.DummyCategoryElement("World Generation", "config.category.arrowWorldGeneration", ConfigCategories.WorldGeneration.class));
 
         return list;
     }

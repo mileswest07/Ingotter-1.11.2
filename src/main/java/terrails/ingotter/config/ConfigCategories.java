@@ -7,9 +7,6 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import terrails.ingotter.Constants;
-import terrails.ingotter.config.ore.ConfigEndHandler;
-import terrails.ingotter.config.ore.ConfigNetherHandler;
-import terrails.ingotter.config.ore.ConfigOverworldHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,32 +39,29 @@ public class ConfigCategories {
 
     }
 
-    public static class OreGenSettings extends GuiConfigEntries.CategoryEntry {
-
-        public OreGenSettings(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
+    //World Generation Category
+    public static class WorldGeneration extends GuiConfigEntries.CategoryEntry {
+        public WorldGeneration(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop) {
             super(owningScreen, owningEntryList, prop);
         }
 
         @Override
         protected GuiScreen buildChildScreen() {
             return new GuiConfig(this.owningScreen, getGeneralElements(), Constants.MODID,
-                    false, false, "config/" + Constants.MODID);
+                    false, false, "config/" + Constants.MODID + "/world");
         }
 
         private static List<IConfigElement> getGeneralElements() {
 
             List<IConfigElement> list = new ArrayList<IConfigElement>();
-            List<IConfigElement> OVERWORLD_SETTINGS = new ConfigElement(ConfigOreHandler.configWorld.getCategory(ConfigOverworldHandler.OVERWORLD.toLowerCase())).getChildElements();
-            List<IConfigElement> NETHER_SETTINGS = new ConfigElement(ConfigOreHandler.configWorld.getCategory(ConfigNetherHandler.NETHER.toLowerCase())).getChildElements();
-            List<IConfigElement> END_SETTINGS = new ConfigElement(ConfigOreHandler.configWorld.getCategory(ConfigEndHandler.END.toLowerCase())).getChildElements();
+            List<IConfigElement> CUSTOM_SETTINGS = new ConfigElement(ConfigOreHandler.configWorld.getCategory(ConfigOreHandler.WORLD.toLowerCase())).getChildElements();
+            List<IConfigElement> INGOTTER_SETTINGS = new ConfigElement(ConfigOreHandler.configIngotter.getCategory(ConfigOreHandler.WORLD_INGOTTER.toLowerCase())).getChildElements();
 
-
-            list.add(new DummyConfigElement.DummyCategoryElement("Oveworld", "config.category.arrowOverworldOreGen", OVERWORLD_SETTINGS));
-            list.add(new DummyConfigElement.DummyCategoryElement("Nether", "config.category.arrowNetherOreGen", NETHER_SETTINGS));
-            list.add(new DummyConfigElement.DummyCategoryElement("End", "config.category.arrowEndOreGen", END_SETTINGS));
-            list.addAll(new ConfigElement(ConfigOreHandler.configWorld.getCategory(ConfigOreHandler.WORLD.toLowerCase())).getChildElements());
+            list.add(new DummyConfigElement.DummyCategoryElement("Custom Generation", "config.category.arrowCustom", CUSTOM_SETTINGS));
+            list.add(new DummyConfigElement.DummyCategoryElement("Ingotter Generation", "config.category.arrowIngotter", INGOTTER_SETTINGS));
 
             return list;
         }
+
     }
 }
