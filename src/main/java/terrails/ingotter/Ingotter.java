@@ -9,6 +9,7 @@ import terrails.ingotter.config.ConfigWatch;
 import terrails.ingotter.proxies.CommonProxy;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -22,17 +23,12 @@ public class Ingotter {
     public static CommonProxy proxy;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event){
         proxy.preInit(event);
 
-        //Path genCustom = Paths.get(event.getModConfigurationDirectory().toString());
-        //System.out.println(genCustom);
-        //Path myDir = Paths.get(event.getModConfigurationDirectory().toString());
-
-
         // I use "directory\world" because I have an subdirectory in my config folder and I only want to track that directory
-        Path myDir = Paths.get(event.getModConfigurationDirectory() + Constants.MODID + File.separator + "world");
-        ConfigWatch.testForConfigChange(myDir);
+        Path myDir = Paths.get(event.getModConfigurationDirectory() + File.separator + Constants.MODID + File.separator + "world");
+        new ConfigWatch(myDir);
     }
 
     @Mod.EventHandler
