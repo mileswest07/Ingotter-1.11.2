@@ -59,14 +59,7 @@ public class ConfigHandler {
     {
         if (event.getModID().equals(Constants.MODID)) {
             mainConfig();
-            config.save();
-
             configOreVariables();
-            configWorld.save();
-            configIngotter.save();
-
-            if (configWorld.hasChanged()) {configWorld.save();}
-            if (configIngotter.hasChanged()) {configIngotter.save();}
         }
     }
 
