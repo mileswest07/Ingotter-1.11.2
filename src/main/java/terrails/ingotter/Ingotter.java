@@ -25,10 +25,6 @@ public class Ingotter {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
         proxy.preInit(event);
-
-        // I use "directory\world" because I have an subdirectory in my config folder and I only want to track that directory
-        Path myDir = Paths.get(event.getModConfigurationDirectory() + File.separator + Constants.MODID + File.separator + "world");
-        new ConfigWatch(myDir);
     }
 
     @Mod.EventHandler

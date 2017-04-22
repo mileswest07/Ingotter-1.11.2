@@ -1,36 +1,89 @@
 package terrails.ingotter.config;
 
+import terrails.ingotter.Constants;
+
+import java.io.IOException;
 import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+import static java.nio.file.StandardWatchEventKinds.*;
+import static terrails.ingotter.config.ConfigHandler.config;
+import static terrails.ingotter.config.ConfigOreHandler.configIngotter;
+import static terrails.ingotter.config.ConfigOreHandler.configWorld;
 
-public class ConfigWatch {
+public class ConfigWatch implements Runnable{
+
+    private Path configDir;
 
     public ConfigWatch(Path dir) {
-        try {
-            WatchService watcher = dir.getFileSystem().newWatchService();
-            dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+        this.configDir = dir;
+    }
 
-            WatchKey watckKey = watcher.take();
+    @Override
+    public void run() {
+        configWatch(configDir);
+    }
 
-            List<WatchEvent<?>> events = watckKey.pollEvents();
-            for (WatchEvent event : events) {
-                if (event.kind() == ENTRY_CREATE) {
-                    System.out.println("Created: " + event.context().toString());
+    private void configWatch(Path dir){
+        Constants.LOGGER.info("The Config Directory is: " + dir);
+        for (;;) {
+            try {
+                WatchService watcher = dir.getFileSystem().newWatchService();
+                dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+
+                WatchKey watckKey = watcher.take();
+
+                List<WatchEvent<?>> events = watckKey.pollEvents();
+                for (WatchEvent event : events) {
+                    if (event.kind() == ENTRY_CREATE) {
+                        continue;
+                    //    System.out.println("Created: " + event.context().toString());
+                    }
+                    if (event.kind() == ENTRY_DELETE) {
+                        continue;
+                        //     System.out.println("Deleted: " + event.context().toString());
+                    }
+                    if (event.kind() == ENTRY_MODIFY) {
+                        if(event.context().toString().contains("Custom")){
+                            Constants.LOGGER.info("Modified: " + event.context().toString());
+                            configWorld.load();
+                        }
+                        else if(event.context().toString().contains("Ingotter-")){
+                            Constants.LOGGER.info("Modified: " + event.context().toString());
+                            configIngotter.load();
+                        }
+                        else if(event.context().toString().contains("er.cfg")){
+                            Constants.LOGGER.info("Modified: " + event.context().toString());
+                            config.load();
+                        }
+                    }
+                    if (event.kind() == OVERFLOW) {
+                        continue;
+                        //    System.out.println("Overflowing is happening");
+                    }
                 }
-                if (event.kind() == ENTRY_DELETE) {
-                    System.out.println("Deleted: " + event.context().toString());
+                boolean valid = watckKey.reset();
+                if (!valid) {
+                    break;
                 }
-                if (event.kind() == ENTRY_MODIFY) {
-                    System.out.println("Modified: " + event.context().toString());
-                }
+            } catch (Exception e) {
+                Constants.LOGGER.info("Error: " + e.toString());
             }
-
-        } catch (Exception e) {
-            System.out.println("Error: " + e.toString());
         }
     }
+/*
+    private void walkAndRegisterDirectories(final Path start) {
+        // register directory and sub-directories
+        try {
+            Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs){
+                        configWatch(dir);
+                        return FileVisitResult.CONTINUE;
+                }
+            });
+        }
+        catch (IOException e){}
+    }*/
 }
