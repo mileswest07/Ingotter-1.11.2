@@ -1,4 +1,4 @@
-package terrails.ingotter.worldgen.ore;
+package terrails.ingotter.worldgen.ore.old;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -15,7 +15,7 @@ import terrails.ingotter.worldgen.generator.WorldGenIngotterMinable;
 
 import java.util.Random;
 
-public class DefinedBiomeDimBlockOreGen implements IWorldGenerator {
+public class DefinedBiomeDimOreGen implements IWorldGenerator {
 
     private int oreMetadataCustom;
     private int oreMetadataIngotter;
@@ -23,8 +23,6 @@ public class DefinedBiomeDimBlockOreGen implements IWorldGenerator {
     private String biomeIngotter;
     private String dimCustom;
     private String dimIngotter;
-    private Block blockToReplaceCustom;
-    private Block blockToReplaceIngotter;
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
@@ -41,7 +39,7 @@ public class DefinedBiomeDimBlockOreGen implements IWorldGenerator {
             String nameOfOre = StringUtils.substringBefore(oreName, " -");
             Block blockOre = Block.getBlockFromName(nameOfOre);
 
-            if (!oreName.isEmpty() && ConfigOreHandler.oreBoolean && blockOre != null && oreName.contains("-dimension:") && oreName.contains("-replace:") && oreName.contains("-biome:")) {
+            if (!oreName.isEmpty() && ConfigOreHandler.oreBoolean && blockOre != null && ore.contains("-biome:") && !ore.contains("-replace:") && ore.contains("-dimension:")) {
 
                 // Metadata
                 if(oreName.contains("-meta:")){
@@ -109,17 +107,8 @@ public class DefinedBiomeDimBlockOreGen implements IWorldGenerator {
                 else if(!dim3.contains(".")){dimCustom = dim3;}
                 // Constants.LOGGER.info("THE DIMENSION FOR: " + blockOre + " IS " + dimCustom);
 
-                // Block To Replace
-                String block1 = oreName.substring(oreName.indexOf("-replace:"));
-                String block2 = block1.replace("-replace:", "");
-                String block3 = block2.contains(" -") ? block2.substring(0, block2.indexOf(" ")) : block2.replace(";", "");
-
-                if (block3.contains(".")) {String[] block4 = block3.split("\\.");
-                    for (String blockReplace : block4) {blockToReplaceCustom = Block.getBlockFromName(blockReplace);}}
-                else if(!block3.contains(".")){blockToReplaceCustom = Block.getBlockFromName(block3);}
-
-                if(biomeCustom != null && dimCustom != null && blockToReplaceCustom != null){
-                    generateOre(blockStateOre, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, Integer.parseInt(dimCustom), Integer.parseInt(biomeCustom), blockToReplaceCustom);
+                if(biomeIngotter != null && dimCustom != null){
+                    generateOre(blockStateOre, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, Integer.parseInt(dimCustom), Integer.parseInt(biomeCustom));
                 }}
         }
     }
@@ -133,7 +122,7 @@ public class DefinedBiomeDimBlockOreGen implements IWorldGenerator {
             String nameOfOre = StringUtils.substringBefore(oreName," -");
             Block blockOre = Block.getBlockFromName(nameOfOre);
 
-            if (!oreName.isEmpty() && ConfigOreHandler.oreIngotterBoolean && blockOre != null && oreName.contains("-dimension:") && oreName.contains("-replace:") && oreName.contains("-biome:")) {
+            if (!oreName.isEmpty() && ConfigOreHandler.oreIngotterBoolean && blockOre != null && oreName.contains("-dimension:") && !oreName.contains("-replace:") && oreName.contains("-biome:")) {
 
                 // Metadata
                 if(oreName.contains("-meta:")){
@@ -200,29 +189,35 @@ public class DefinedBiomeDimBlockOreGen implements IWorldGenerator {
                     for (String dim : dim4) {dimIngotter = dim;}}
                 else if(!dim3.contains(".")){dimIngotter = dim3;}
                 // Constants.LOGGER.info("THE DIMENSION FOR: " + blockOre + " IS " + dimIngotter);
-                
-                // Block To Replace
-                String block1 = oreName.substring(oreName.indexOf("-replace:"));
-                String block2 = block1.replace("-replace:", "");
-                String block3 = block2.contains(" -") ? block2.substring(0, block2.indexOf(" ")) : block2.replace(";", "");
 
-                if (block3.contains(".")) {String[] block4 = block3.split("\\.");
-                    for (String blockReplace : block4) {blockToReplaceIngotter = Block.getBlockFromName(blockReplace);}}
-                else if(!block3.contains(".")){blockToReplaceIngotter = Block.getBlockFromName(block3);}
-                
-                if(biomeIngotter != null && dimIngotter != null && blockToReplaceIngotter != null){
-                    generateOre(blockStateOre, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, Integer.parseInt(dimIngotter), Integer.parseInt(biomeIngotter), blockToReplaceIngotter);
+                if(biomeIngotter != null && dimIngotter != null){
+                    generateOre(blockStateOre, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, Integer.parseInt(dimIngotter), Integer.parseInt(biomeIngotter));
                 }}
         }
     }
 
-    private void generateOre(IBlockState ore, World world, Random random, int chunkX, int chunkZ, int minY, int maxY, int minVeinSize, int maxVeinSize, int chancesToSpawn, int dimension, int biomeID, Block blockToReplace) {
+    private void generateOre(IBlockState ore, World world, Random random, int chunkX, int chunkZ, int minY, int maxY, int minVeinSize, int maxVeinSize, int chancesToSpawn, int dimension, int biomeID) {
         int heightRange = maxY - minY;
         BlockPos blockpos = new BlockPos((chunkX * 16) + random.nextInt(16), minY + random.nextInt(heightRange), (chunkZ * 16) + random.nextInt(16));
-
-        if(world.provider.getDimension() == dimension && world.getBiome(blockpos) == Biome.getBiome(biomeID)) {
+        
+        if(world.provider.getDimension() == 0 && world.provider.getDimension() == dimension && world.getBiome(blockpos) == Biome.getBiome(biomeID)){
             for (int i = 0; i < chancesToSpawn; i++) {
-                WorldGenIngotterMinable generator = new WorldGenIngotterMinable(ore, minVeinSize, maxVeinSize, blockToReplace);
+                WorldGenIngotterMinable generator = new WorldGenIngotterMinable(ore, minVeinSize, maxVeinSize, Blocks.STONE);
+                generator.generate(world, random, blockpos);}
+        }
+        else if(world.provider.getDimension() == -1 && world.provider.getDimension() == dimension && world.getBiome(blockpos) == Biome.getBiome(biomeID)){
+            for (int i = 0; i < chancesToSpawn; i++) {
+                WorldGenIngotterMinable generator = new WorldGenIngotterMinable(ore, minVeinSize, maxVeinSize, Blocks.NETHERRACK);
+                generator.generate(world, random, blockpos);}
+        }
+        else if(world.provider.getDimension() == 1 && world.provider.getDimension() == dimension && world.getBiome(blockpos) == Biome.getBiome(biomeID)){
+            for (int i = 0; i < chancesToSpawn; i++) {
+                WorldGenIngotterMinable generator = new WorldGenIngotterMinable(ore, minVeinSize, maxVeinSize, Blocks.END_STONE);
+                generator.generate(world, random, blockpos);}
+        }
+        else if(world.provider.getDimension() == dimension && world.getBiome(blockpos) == Biome.getBiome(biomeID)) {
+            for (int i = 0; i < chancesToSpawn; i++) {
+                WorldGenIngotterMinable generator = new WorldGenIngotterMinable(ore, minVeinSize, maxVeinSize, Blocks.STONE);
                 generator.generate(world, random, blockpos);}
         }
     }

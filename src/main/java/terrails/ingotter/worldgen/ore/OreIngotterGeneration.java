@@ -5,7 +5,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -15,13 +14,12 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.StringUtils;
-import terrails.ingotter.Constants;
 import terrails.ingotter.config.ConfigOreHandler;
 import terrails.ingotter.worldgen.generator.WorldGenIngotterMinable;
 
 import java.util.Random;
 
-public class OreGeneration implements IWorldGenerator {
+public class OreIngotterGeneration implements IWorldGenerator {
 
     int minVein;
     int maxVein;
@@ -113,25 +111,25 @@ public class OreGeneration implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        generateCustom(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        generateIngotter(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
     }
 
     @SuppressWarnings("deprecation")
-    private void generateCustom(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-     //   StringBuilder stringBuilder = new StringBuilder();
-     //   for (int i = 0; i < ConfigOreHandler.oreArray.length; i++) {
-     //       stringBuilder.append(ConfigOreHandler.oreArray[i]);
+    private void generateIngotter(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+    //    StringBuilder stringBuilder = new StringBuilder();
+    //    for (int i = 0; i < ConfigOreHandler.oreIngotterArray.length; i++) {
+    //        stringBuilder.append(ConfigOreHandler.oreIngotterArray[i]);
      //   }
-      //  String[] oreArray = stringBuilder.toString().split(";");
-        for (String ore : ConfigOreHandler.oreArray) {
+     //   String[] oreArray = stringBuilder.toString().split(";");
+        for (String ore : ConfigOreHandler.oreIngotterArray) {
             String oreName = ore.toLowerCase();
+          //  System.out.println(oreName);
 
             // Ore Name
             String nameOfOre = StringUtils.substringBefore(oreName, " -");
             Block blockOre = Block.getBlockFromName(nameOfOre);
             //System.out.println(nameOfOre);
-
-            if(blockOre != null){
+            if(blockOre != null) {
             //Metadata
             if (oreName.contains("-meta:")) {
                 String meta1 = oreName.substring(oreName.indexOf("-meta:")).replace("-meta:", "");
@@ -190,7 +188,7 @@ public class OreGeneration implements IWorldGenerator {
                 String dim2 = dim1.contains(" -") ? dim1.substring(0, dim1.indexOf(" ")) : dim1.replace(";", "");
                 if (!dim2.contains(".")) {dimID = Integer.parseInt(dim2);}
                 else if (dim2.contains(".")) {String[] dim3 = dim2.split("\\.");
-                for (String dim : dim3) {dimID = Integer.parseInt(dim);}}
+                    for (String dim : dim3) {dimID = Integer.parseInt(dim);}}
                 //System.out.println(dimID);
             }
 
@@ -209,7 +207,7 @@ public class OreGeneration implements IWorldGenerator {
                 String biome2 = biome1.contains(" -") ? biome1.substring(0, biome1.indexOf(" ")) : biome1.replace(";", "");
                 if (!biome2.contains(".")) {biomeID = Integer.parseInt(biome2);}
                 else if (biome2.contains(".")) {String[] biome3 = biome2.split("\\.");
-                for (String biome : biome3) {biomeID = Integer.parseInt(biome);}}
+                    for (String biome : biome3) {biomeID = Integer.parseInt(biome);}}
             }
             boolean dimension = oreName.contains("-dimension:");
             boolean biome = oreName.contains("-biome:");
@@ -238,8 +236,8 @@ public class OreGeneration implements IWorldGenerator {
             }
             if(dimension && !biome && blockToReplace){
                 generateDimReplace(oreBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, dimID, blockReplace);
-            }}
-        }
+            }
+        }}
     }
 
     private void generateNormal(IBlockState ore, World world, Random random, int chunkX, int chunkZ, int minY, int maxY, int minVeinSize, int maxVeinSize, int chancesToSpawn){

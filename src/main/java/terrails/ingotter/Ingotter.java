@@ -5,13 +5,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import terrails.ingotter.config.ConfigWatch;
 import terrails.ingotter.proxies.CommonProxy;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Mod(modid = Constants.MODID,
         name = Constants.NAME,

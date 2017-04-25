@@ -1,5 +1,6 @@
 package terrails.ingotter.config;
 
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import terrails.ingotter.Constants;
 
 import java.io.IOException;
@@ -9,7 +10,9 @@ import java.util.List;
 
 import static java.nio.file.StandardWatchEventKinds.*;
 import static terrails.ingotter.config.ConfigHandler.config;
+import static terrails.ingotter.config.ConfigHandler.mainConfig;
 import static terrails.ingotter.config.ConfigOreHandler.configIngotter;
+import static terrails.ingotter.config.ConfigOreHandler.configOreVariables;
 import static terrails.ingotter.config.ConfigOreHandler.configWorld;
 
 public class ConfigWatch implements Runnable{
@@ -26,7 +29,7 @@ public class ConfigWatch implements Runnable{
     }
 
     private void configWatch(Path dir){
-        Constants.LOGGER.info("The Config Directory is: " + dir);
+        Constants.LOGGER.info("Config directory currently being monitored: " + dir);
         for (;;) {
             try {
                 WatchService watcher = dir.getFileSystem().newWatchService();
@@ -46,16 +49,22 @@ public class ConfigWatch implements Runnable{
                     }
                     if (event.kind() == ENTRY_MODIFY) {
                         if(event.context().toString().contains("Custom")){
-                            Constants.LOGGER.info("Modified: " + event.context().toString());
+                            Constants.LOGGER.info(event.context().toString() + " has been modified and synced with game");
                             configWorld.load();
+                            configWorld.save();
+                            configOreVariables();
                         }
                         else if(event.context().toString().contains("Ingotter-")){
-                            Constants.LOGGER.info("Modified: " + event.context().toString());
+                            Constants.LOGGER.info(event.context().toString() + " has been modified and synced with game");
                             configIngotter.load();
+                            configIngotter.save();
+                            configOreVariables();
                         }
                         else if(event.context().toString().contains("er.cfg")){
-                            Constants.LOGGER.info("Modified: " + event.context().toString());
+                            Constants.LOGGER.info(event.context().toString() + " has been modified and synced with game");
                             config.load();
+                            config.save();
+                            mainConfig();
                         }
                     }
                     if (event.kind() == OVERFLOW) {

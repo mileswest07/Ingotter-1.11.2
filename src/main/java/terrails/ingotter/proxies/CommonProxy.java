@@ -19,10 +19,12 @@ import terrails.ingotter.init.recipes.ModRecipes;
 import terrails.ingotter.init.recipes.ModShapedRecipes;
 import terrails.ingotter.init.recipes.ModShapelessRecipes;
 import terrails.ingotter.init.recipes.ModSmeltingRecipes;
-import terrails.ingotter.worldgen.ore.DefinedBlockDimOreGen;
-import terrails.ingotter.worldgen.ore.DefinedBlockOreGen;
-import terrails.ingotter.worldgen.ore.DefinedDimOreGen;
-import terrails.ingotter.worldgen.ore.NormalOreGen;
+import terrails.ingotter.worldgen.ore.OreGeneration;
+import terrails.ingotter.worldgen.ore.OreIngotterGeneration;
+import terrails.ingotter.worldgen.ore.old.DefinedBlockDimOreGen;
+import terrails.ingotter.worldgen.ore.old.DefinedBlockOreGen;
+import terrails.ingotter.worldgen.ore.old.DefinedDimOreGen;
+import terrails.ingotter.worldgen.ore.old.NormalOreGen;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -48,6 +50,12 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(new ConfigOreHandler());
         ConfigOreHandler.init(e.getModConfigurationDirectory(), e.getModConfigurationDirectory());
 
+        MinecraftForge.ORE_GEN_BUS.register(new OreGeneration());
+        GameRegistry.registerWorldGenerator(new OreGeneration(), 0);
+
+        MinecraftForge.ORE_GEN_BUS.register(new OreIngotterGeneration());
+        GameRegistry.registerWorldGenerator(new OreIngotterGeneration(), 0);
+/*
         MinecraftForge.ORE_GEN_BUS.register(new NormalOreGen());
         GameRegistry.registerWorldGenerator(new NormalOreGen(), 0);
 
@@ -59,6 +67,12 @@ public class CommonProxy {
 
         MinecraftForge.ORE_GEN_BUS.register(new DefinedBlockDimOreGen());
         GameRegistry.registerWorldGenerator(new DefinedBlockDimOreGen(), 0);
+*/
+        // SYNCING OF CONFIG FILES TO IN GAME CONFIG WHEN GAME IS RUNNING
+        Path worldDir = Paths.get(e.getModConfigurationDirectory() + File.separator + Constants.MODID + File.separator + "world");
+        new Thread(new ConfigWatch(worldDir)).start();
+        Path mainDir = Paths.get(e.getModConfigurationDirectory() + File.separator + Constants.MODID);
+        new Thread(new ConfigWatch(mainDir)).start();
     }
 
     public void init(FMLInitializationEvent e) {

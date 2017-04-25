@@ -1,4 +1,4 @@
-package terrails.ingotter.worldgen.ore;
+package terrails.ingotter.worldgen.ore.old;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

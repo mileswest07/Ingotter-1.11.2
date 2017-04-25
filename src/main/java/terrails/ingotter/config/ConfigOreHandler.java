@@ -21,10 +21,6 @@ public class ConfigOreHandler{
     public static String[] oreIngotterArray;
 
 
-
-    //   public static String[] oreGeneration;
-//    public static String[] oreIngotterGeneration
-
     public static boolean oreBoolean;
     public static boolean oreIngotterBoolean;
 
@@ -54,11 +50,7 @@ public class ConfigOreHandler{
         oreBoolean = configWorld.getBoolean("generate defined ores", WORLD, true, "enable generating of ores in this config");
 
         String[] oreGeneration = configWorld.getStringList("generation", WORLD, EMPTY_STRING, "custom ore generation");
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < oreGeneration.length; i++) {
-            stringBuilder.append(oreGeneration[i]);
-        }
-        oreArray = stringBuilder.toString().split(";");
+        oreArray = oreGeneration;
 
         if (configWorld.hasChanged()) {configWorld.save();}
 
@@ -67,11 +59,7 @@ public class ConfigOreHandler{
         oreIngotterBoolean = configIngotter.getBoolean("generate defined ores", WORLD_INGOTTER, true, "enable generating of ores in this config");
 
         String[] oreIngotterGeneration = configIngotter.getStringList("ingotter generation", WORLD_INGOTTER, INGOTTER_DEFAULT(), STRING_LIST_INGOTTER());
-        StringBuilder stringBuilder1 = new StringBuilder();
-        for (int i = 0; i < oreIngotterGeneration.length; i++) {
-            stringBuilder1.append(oreIngotterGeneration[i]);
-        }
-        oreIngotterArray = stringBuilder1.toString().split(";");
+        oreIngotterArray = oreIngotterGeneration;
 
         if (configIngotter.hasChanged()) {configIngotter.save();}
     }
@@ -87,7 +75,7 @@ public class ConfigOreHandler{
         return new String[]{
                 // Overworld
                 "" +
-                        "ingotter:copper_ore -minVein:4 -maxVein:9 -minY:40 -maxY:90 -perChunk:14 -dimension:0;",
+                "ingotter:copper_ore -minVein:4 -maxVein:9 -minY:40 -maxY:90 -perChunk:14 -dimension:0;",
                 "ingotter:tin_ore -minVein:3 -maxVein:8 -minY:25 -maxY:60 -perChunk:12 -dimension:0;",
                 "ingotter:silver_ore -minVein:3 -maxVein:7 -minY:5 -maxY:25 -perChunk:9 -dimension:0;",
                 "ingotter:lead_ore -minVein:4 -maxVein:8 -minY:15 -maxY:30 -perChunk:8 -dimension:0;",
@@ -121,7 +109,7 @@ public class ConfigOreHandler{
                 "ingotter:copper_ore_end -minVein:4 -maxVein:8 -minY:50 -maxY:125 -perChunk:14 -dimension:1;",
                 "ingotter:tin_ore_end -minVein:2 -maxVein:8 -minY:25 -maxY:130 -perChunk:12 -dimension:1;",
                 "ingotter:silver_ore_end -minVein:3 -maxVein:9 -minY:20 -maxY:115 -perChunk:9 -dimension:1;",
-                "ingotter:lead_ore_end -minVein:4 -maxVein:8 -minY:45 -maxY:110 -perChunk:8 -dimension:1;",
+                "ingotter:lead_ore_end -minVein:4 -maxVein:8 -minY:20 -maxY:110 -perChunk:8 -dimension:1;",
                 "ingotter:aluminum_ore_end -minVein:4 -maxVein:9 -minY:15 -maxY:120 -perChunk:8 -dimension:1;",
                 "ingotter:nickel_ore_end -minVein:4 -maxVein:8 -minY:15 -maxY:130 -perChunk:9 -dimension:1;",
                 "ingotter:platinum_ore_end -minVein:1 -maxVein:3 -minY:15 -maxY:125 -perChunk:4 -dimension:1;",
@@ -147,22 +135,28 @@ public class ConfigOreHandler{
                         "-maxY: (Define the highest Y level where block should spawn, example: -maxY:80)\n" +
                         "-minVein: (Define the lowest vein size of the block, example: -minVein:4)\n" +
                         "-maxVein: (Define the highest vein size of the block, example: -maxVein:10)\n" +
-                        "-perChunk: (Define how much veins of the block should spawn per chunk, example: -perChunk:2)\n\n\n" +
-                        "-meta:      [OPTIONAL VARIABLE], blocks without this variable will have metadata set to 0\n" +
+                        "-perChunk: (Define how much veins of the block should spawn per chunk, example: -perChunk:2)" +
+                        "\n" +
+                        "[OPTIONAL VARIABLES]\n" +
+                        "-meta:      blocks without this variable will have metadata set to 0\n" +
                         "            (Define metadata of the block, example: -meta:2)\n\n" +
-                        "-dimension: [OPTIONAL VARIABLE], blocks without this variable will generate in any dimension\n" +
+                        "-dimension: blocks without this variable will generate in any dimension\n" +
                         "            (Define in which dimension ore should spawn, you need to use dimension number and not the name)\n" +
                         "             example: -dimension:0 (this will spawn the ore in overworld), if you want to use multiple dimensions:\n" +
                         "             example: -dimension:0.-1 (this will spawn the ore in overworld and nether, you have to use a dot between each number!\n" +
                         "             Using this variable without -replace: variable: using -1 (nether) will generate block in netherrack,\n" +
                         "             0 (overworld) will generate in stone, 1 (end) will generate in end stone, every other dimension is stone only\n\n" +
-                        "-replace:   [OPTIONAL VARIABLE], blocks without this variable will generate in stone\n" +
+                        "-replace:   blocks without this variable will generate in stone\n" +
                         "            (Define which block should be replaced by the generating block)\n" +
                         "             example: -replace:minecraft:cobblestone (this will spawn it only in cobblestone), if you want multiple blocks:\n" +
                         "             example: -replace:minecraft:cobblestone.minecraft:netherrack (this will spawn it in cobblestone and netherrack),\n" +
                         "             you have to use a dot between each block name (Metadata for this variable will be added)!\n" +
                         "             Using this variable without -dimension: variable: the blocks defined will work in any possible dimension\n\n" +
-
+                        "-biome:     blocks without this variables will generate in any biome\n" +
+                        "            (Define in which biome ore should spawn, you need to use biome number and not the name)\n" +
+                        "             example: -biome:3 (this will spawn only in extreme hills biome), if you want multiple biomes:\n" +
+                        "             example: -biome:3.4 (this will spawn in extreme hills and forest biome)\n" +
+                        "             You have to use a dot between each block name\n\n" +
                         "             At the start of each line always put the name of a block to generate and at the end of line put a semicolon (;)\n" +
                         "             example: forestry:resources -meta:1 -minVein:4 -maxVein:8 -minY:40 -maxY:90 -perChunk:5;\n" +
                         "             You can check how I did it with Ingotter ores in Ingotter-Generation.cfg";
