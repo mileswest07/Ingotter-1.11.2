@@ -54,6 +54,7 @@ public class WorldGenIngotterMinable extends WorldGenerator {
             IBlockState blockState = world.getBlockState(new BlockPos(x, y, z));
             if (blockState.getBlock().isReplaceableOreGen(blockState, world, new BlockPos(x, y, z), blockToReplace)) {
                 generateSmallVein(world, rand, x, y, z);}
+
         }
         return false;
     }

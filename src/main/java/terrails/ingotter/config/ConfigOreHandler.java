@@ -148,8 +148,11 @@ public class ConfigOreHandler{
                         "             0 (overworld) will generate in stone, 1 (end) will generate in end stone, every other dimension is stone only\n\n" +
                         "-replace:   blocks without this variable will generate in stone\n" +
                         "            (Define which block should be replaced by the generating block)\n" +
-                        "             example: -replace:minecraft:cobblestone (this will spawn it only in cobblestone), if you want multiple blocks:\n" +
-                        "             example: -replace:minecraft:cobblestone.minecraft:netherrack (this will spawn it in cobblestone and netherrack),\n" +
+                        "             example: -replace:minecraft:cobblestone (this will spawn it only in cobblestone), if you want to use multiple blocks\n" +
+                        "             you have to do it in another line and replace the current block with another block in replace,\n" +
+                        "             if you want to use a block with metadata:\n" +
+                        "             example: -replace:minecraft:stone-meta:2 (it will crash because stone with meta:2 doesn't exist but you get it, also\n" +
+                        "             you have to connect the dash '-' with the block name or it will not work)\n" +
                         "             you have to use a dot between each block name (Metadata for this variable will be added)!\n" +
                         "             Using this variable without -dimension: variable: the blocks defined will work in any possible dimension\n\n" +
                         "-biome:     blocks without this variables will generate in any biome\n" +
