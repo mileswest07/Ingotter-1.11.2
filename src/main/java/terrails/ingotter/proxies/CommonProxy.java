@@ -55,19 +55,7 @@ public class CommonProxy {
 
         MinecraftForge.ORE_GEN_BUS.register(new OreIngotterGeneration());
         GameRegistry.registerWorldGenerator(new OreIngotterGeneration(), 0);
-/*
-        MinecraftForge.ORE_GEN_BUS.register(new NormalOreGen());
-        GameRegistry.registerWorldGenerator(new NormalOreGen(), 0);
 
-        MinecraftForge.ORE_GEN_BUS.register(new DefinedDimOreGen());
-        GameRegistry.registerWorldGenerator(new DefinedDimOreGen(), 0);
-
-        MinecraftForge.ORE_GEN_BUS.register(new DefinedBlockOreGen());
-        GameRegistry.registerWorldGenerator(new DefinedBlockOreGen(), 0);
-
-        MinecraftForge.ORE_GEN_BUS.register(new DefinedBlockDimOreGen());
-        GameRegistry.registerWorldGenerator(new DefinedBlockDimOreGen(), 0);
-*/
         // SYNCING OF CONFIG FILES TO IN GAME CONFIG WHEN GAME IS RUNNING
         Path worldDir = Paths.get(e.getModConfigurationDirectory() + File.separator + Constants.MODID + File.separator + "world");
         new Thread(new ConfigWatch(worldDir)).start();

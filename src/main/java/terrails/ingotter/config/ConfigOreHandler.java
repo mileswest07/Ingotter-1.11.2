@@ -143,23 +143,21 @@ public class ConfigOreHandler{
                         "-dimension: blocks without this variable will generate in any dimension\n" +
                         "            (Define in which dimension ore should spawn, you need to use dimension number and not the name)\n" +
                         "             example: -dimension:0 (this will spawn the ore in overworld), if you want to use multiple dimensions:\n" +
-                        "             example: -dimension:0.-1 (this will spawn the ore in overworld and nether, you have to use a dot between each number!\n" +
+                        "             example: -dimension:0|-1 (this will spawn the ore in overworld and nether, you have to use a pipe '|' between each number!\n" +
                         "             Using this variable without -replace: variable: using -1 (nether) will generate block in netherrack,\n" +
                         "             0 (overworld) will generate in stone, 1 (end) will generate in end stone, every other dimension is stone only\n\n" +
                         "-replace:   blocks without this variable will generate in stone\n" +
                         "            (Define which block should be replaced by the generating block)\n" +
                         "             example: -replace:minecraft:cobblestone (this will spawn it only in cobblestone), if you want to use multiple blocks\n" +
-                        "             you have to do it in another line and replace the current block with another block in replace,\n" +
-                        "             if you want to use a block with metadata:\n" +
-                        "             example: -replace:minecraft:stone-meta:2 (it will crash because stone with meta:2 doesn't exist but you get it, also\n" +
+                        "             you have to do it in another line (copy your settings in another line and change the replacing block), if you want to use a block with metadata:\n" +
+                        "             example: -replace:minecraft:stone-meta:2 (it will not work because stone with meta:2 doesn't exist but you get it, also\n" +
                         "             you have to connect the dash '-' with the block name or it will not work)\n" +
-                        "             you have to use a dot between each block name (Metadata for this variable will be added)!\n" +
-                        "             Using this variable without -dimension: variable: the blocks defined will work in any possible dimension\n\n" +
+                        "             Using this variable without -dimension: variable: the block defined will work in any possible dimension\n\n" +
                         "-biome:     blocks without this variables will generate in any biome\n" +
                         "            (Define in which biome ore should spawn, you need to use biome number and not the name)\n" +
                         "             example: -biome:3 (this will spawn only in extreme hills biome), if you want multiple biomes:\n" +
-                        "             example: -biome:3.4 (this will spawn in extreme hills and forest biome)\n" +
-                        "             You have to use a dot between each block name\n\n" +
+                        "             example: -biome:3|4 (this will spawn in extreme hills and forest biome)\n" +
+                        "             You have to use a pipe '|' between each block name\n\n" +
                         "             At the start of each line always put the name of a block to generate and at the end of line put a semicolon (;)\n" +
                         "             example: forestry:resources -meta:1 -minVein:4 -maxVein:8 -minY:40 -maxY:90 -perChunk:5;\n" +
                         "             You can check how I did it with Ingotter ores in Ingotter-Generation.cfg";

@@ -21,22 +21,6 @@ import terrails.ingotter.worldgen.generator.WorldGenIngotterMinable;
 import java.util.Random;
 
 public class OreIngotterGeneration implements IWorldGenerator {
-/*
-    int minVein;
-    int maxVein;
-    int minY;
-    int maxY;
-    int perChunk;
-    int oreMetadata;
-    int biomeID;
-    int dimID;
-    Block blockReplace;
-    IBlockState oreBlock;
-*/
-    int BiomeID;
-    int DimensionID;
-    IBlockState GeneratingBlock;
-    IBlockState BlockReplace;
 
     @SubscribeEvent
     public void generation(OreGenEvent.GenerateMinable event){
@@ -44,7 +28,6 @@ public class OreIngotterGeneration implements IWorldGenerator {
             String oreName = ore.toLowerCase();
             String nameOfOre = StringUtils.substringBefore(oreName, " -");
 
-            if(event.getGenerator() instanceof WorldGenMinable){
             switch(event.getType()) {
                 case COAL:
                     if (nameOfOre.contains("minecraft:coal_ore")) {
@@ -112,12 +95,14 @@ public class OreIngotterGeneration implements IWorldGenerator {
                     }
                     break;
             }
-        }}
+        }
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        generateIngotter(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        if(ConfigOreHandler.oreIngotterBoolean) {
+            generateIngotter(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -135,122 +120,28 @@ public class OreIngotterGeneration implements IWorldGenerator {
             boolean containsReplace = blockArray.contains(" -replace:");
             boolean containsStuff = containsMinY && containsMaxY && containsMinVein && containsMaxVein;
 
-            if (containsStuff) {
+            int minY = StringChecker.minY(blockArray);
+            int maxY = StringChecker.maxY(blockArray);
+            int minVein = StringChecker.minVein(blockArray);
+            int maxVein = StringChecker.maxVein(blockArray);
+            int perChunk = StringChecker.perChunk(blockArray);
+            int BiomeID = StringChecker.biomeID(blockArray);
+            int DimensionID = StringChecker.dimensionID(blockArray);
+            IBlockState GeneratingBlock = StringChecker.generatingBlock(blockArray);
+            Block BlockReplace = StringChecker.replaceBlock(blockArray);
 
-                String stringMeta = containsMetadata ? blockArray.replaceAll("^.*( -meta:\\d+).*$", "$1") : " -meta:0";
-                String stringMinY = blockArray.replaceAll("^.*( -miny:\\d+).*$", "$1");
-                String stringMaxY = blockArray.replaceAll("^.*( -maxy:\\d+).*$", "$1");
-                String stringMinVein = blockArray.replaceAll("^.*( -minvein:\\d+).*$", "$1");
-                String stringMaxVein = blockArray.replaceAll("^.*( -maxvein:\\d+).*$", "$1");
-                String stringPerChunk = blockArray.replaceAll("^.*( -perchunk:\\d+).*$", "$1");
-
-                String metaDigit = CharMatcher.DIGIT.retainFrom(stringMeta);
-                String minYDigit = CharMatcher.DIGIT.retainFrom(stringMinY);
-                String maxYDigit = CharMatcher.DIGIT.retainFrom(stringMaxY);
-                String minVeinDigit = CharMatcher.DIGIT.retainFrom(stringMinVein);
-                String maxVeinDigit = CharMatcher.DIGIT.retainFrom(stringMaxVein);
-                String perChunkDigit = CharMatcher.DIGIT.retainFrom(stringPerChunk);
-
-                int meta = Integer.parseInt(metaDigit);
-                int minY = Integer.parseInt(minYDigit);
-                int maxY = Integer.parseInt(maxYDigit);
-                int minVein = Integer.parseInt(minVeinDigit);
-                int maxVein = Integer.parseInt(maxVeinDigit);
-                int perChunk = Integer.parseInt(perChunkDigit);
-
-                String stringBlock = blockArray.substring(0, blockArray.indexOf(" -"));
-                Block theBlockThingy = Block.getBlockFromName(stringBlock);
-                if(theBlockThingy != null) {
-                    GeneratingBlock = theBlockThingy.getStateFromMeta(meta);
-                }
-            /*
-            // Printing
-            System.out.println(stringBlock);
-            System.out.println(stringMeta);
-            System.out.println(stringMinY);
-            System.out.println(stringMaxY);
-            System.out.println(stringMinVein);
-            System.out.println(stringMaxVein);
-            System.out.println(stringPerChunk);
-            */
-
-                if (containsBiome) {
-                    String biome1 = blockArray.substring(blockArray.indexOf("-biome:")).replace("-biome:", "");
-                    String biome2 = biome1.contains(" -") ? biome1.substring(0, biome1.indexOf(" ")) : biome1.replace(";", "");
-                    if (!biome2.contains("|")) {
-                        BiomeID = Integer.parseInt(biome2);
-                        //System.out.println(biome2);
-                    } else if (biome2.contains("|")) {
-                        String[] biome3 = biome2.split("\\|");
-                        for (String biome : biome3) {
-                            BiomeID = Integer.parseInt(biome);
-                            //System.out.println("biome:" + biome);
-                        }
-                    }
-                }
-
-                if (containsDim) {
-                    String dim1 = blockArray.substring(blockArray.indexOf("-dimension:")).replace("-dimension:", "");
-                    String dim2 = dim1.contains(" -") ? dim1.substring(0, dim1.indexOf(" ")) : dim1.replace(";", "");
-                    if (!dim2.contains("|")) {
-                        DimensionID = Integer.parseInt(dim2);
-                        //System.out.println(dim2);
-                    } else if (dim2.contains("|")) {
-                        String[] dim3 = dim2.split("\\|");
-                        for (String dim : dim3) {
-                            DimensionID = Integer.parseInt(dim);
-                            //System.out.println("dimension:" + dim);
-                        }
-                    }
-                }
-
-                if (containsReplace) {
-                    String replace1 = blockArray.substring(blockArray.indexOf("-replace:")).replace("-replace:", "");
-                    String replace2 = replace1.contains(" -") ? replace1.substring(0, replace1.indexOf(" ")) : replace1.replace(";", "");
-                    if (!replace2.contains("|")) {
-                        String replaceMetaString = !replace2.contains("-meta:") ? "-meta:0" : replace2.substring(replace2.indexOf("-meta:"));
-                        String replaceMetaDigit = CharMatcher.DIGIT.retainFrom(replaceMetaString);
-                        int replaceMeta = Integer.parseInt(replaceMetaDigit);
-
-                        String replaceString = !replace2.contains("-meta:") ? replace2 : StringUtils.substringBefore(replace2, "-meta:");
-                        //System.out.println("Metadata is:" + replaceMeta + ", The Block is:" + replaceString);
-
-                        Block theBlock = Block.getBlockFromName(replaceString);
-                        if (theBlock != null) {
-                            BlockReplace = theBlock.getStateFromMeta(replaceMeta);
-                        }
-                    }
-                    /* else if (replace2.contains("|")) {
-                        String[] replace3 = replace2.split("\\|");
-                        for (String replace4 : replace3) {
-                            //System.out.println("The Array is: " + replace4);
-                            String replaceMetaString = !replace4.contains("-meta:") ? "-meta:0" : replace4.substring(replace4.indexOf("-meta:"));
-                            String replaceMetaDigit = CharMatcher.DIGIT.retainFrom(replaceMetaString);
-                            //System.out.println("The Meta String: " + replaceMetaString);
-                            //System.out.println("The Meta Digit: " + replaceMetaDigit);
-                            int replaceMeta = Integer.parseInt(replaceMetaDigit);
-
-                            String replaceString = !replace4.contains("-meta:") ? replace4 : StringUtils.substringBefore(replace4, "-meta:");
-                            //System.out.println("Metadata is:" + replaceMeta + ", The Block is:" + replaceString);
-
-                            Block theBlock = Block.getBlockFromName(replaceString);
-                            if (theBlock != null) {
-                                BlockReplace = theBlock.getStateFromMeta(replaceMeta);
-                            }
-                        }
-                    }*/
-                }
+            if (containsStuff && GeneratingBlock != null) {
                 if (!containsDim && !containsBiome && !containsReplace) {
                     generateNormal(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk);
                 }
-                if (!containsDim && !containsBiome && containsReplace) {
-                    generateReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, BlockReplace.getBlock());
+                if (!containsDim && !containsBiome && containsReplace && BlockReplace != null) {
+                    generateReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, BlockReplace);
                 }
-                if (!containsDim && containsBiome && containsReplace) {
-                    generateBiomeReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, BiomeID, BlockReplace.getBlock());
+                if (!containsDim && containsBiome && containsReplace && BlockReplace != null) {
+                    generateBiomeReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, BiomeID, BlockReplace);
                 }
-                if (containsDim && containsBiome && containsReplace) {
-                    generateDimBiomeReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, DimensionID, BiomeID, BlockReplace.getBlock());
+                if (containsDim && containsBiome && containsReplace && BlockReplace != null) {
+                    generateDimBiomeReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, DimensionID, BiomeID, BlockReplace);
                 }
                 if (containsDim && containsBiome && !containsReplace) {
                     generateDimBiome(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, DimensionID, BiomeID);
@@ -261,8 +152,8 @@ public class OreIngotterGeneration implements IWorldGenerator {
                 if (!containsDim && containsBiome && !containsReplace) {
                     generateBiome(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, BiomeID);
                 }
-                if (containsDim && !containsBiome && containsReplace) {
-                    generateDimReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, DimensionID, BlockReplace.getBlock());
+                if (containsDim && !containsBiome && containsReplace && BlockReplace != null) {
+                    generateDimReplace(GeneratingBlock, world, random, chunkX, chunkZ, minY, maxY, minVein, maxVein, perChunk, DimensionID, BlockReplace);
                 }
             }
         }
@@ -381,4 +272,108 @@ public class OreIngotterGeneration implements IWorldGenerator {
         }
     }
 
+
+    /*
+                String stringMeta = containsMetadata ? blockArray.replaceAll("^.*( -meta:\\d+).*$", "$1") : " -meta:0";
+                String stringMinY = blockArray.replaceAll("^.*( -miny:\\d+).*$", "$1");
+                String stringMaxY = blockArray.replaceAll("^.*( -maxy:\\d+).*$", "$1");
+                String stringMinVein = blockArray.replaceAll("^.*( -minvein:\\d+).*$", "$1");
+                String stringMaxVein = blockArray.replaceAll("^.*( -maxvein:\\d+).*$", "$1");
+                String stringPerChunk = blockArray.replaceAll("^.*( -perchunk:\\d+).*$", "$1");
+
+                String metaDigit = CharMatcher.DIGIT.retainFrom(stringMeta);
+                String minYDigit = CharMatcher.DIGIT.retainFrom(stringMinY);
+                String maxYDigit = CharMatcher.DIGIT.retainFrom(stringMaxY);
+                String minVeinDigit = CharMatcher.DIGIT.retainFrom(stringMinVein);
+                String maxVeinDigit = CharMatcher.DIGIT.retainFrom(stringMaxVein);
+                String perChunkDigit = CharMatcher.DIGIT.retainFrom(stringPerChunk);
+
+                int meta = Integer.parseInt(metaDigit);
+                int minY = Integer.parseInt(minYDigit);
+                int maxY = Integer.parseInt(maxYDigit);
+                int minVein = Integer.parseInt(minVeinDigit);
+                int maxVein = Integer.parseInt(maxVeinDigit);
+                int perChunk = Integer.parseInt(perChunkDigit);
+
+                String stringBlock = blockArray.substring(0, blockArray.indexOf(" -"));
+                Block theBlockThingy = Block.getBlockFromName(stringBlock);
+                if(theBlockThingy != null) {
+                    GeneratingBlock = theBlockThingy.getStateFromMeta(meta);
+                }
+            /*
+            // Printing
+            System.out.println(stringBlock);
+            System.out.println(stringMeta);
+            System.out.println(stringMinY);
+            System.out.println(stringMaxY);
+            System.out.println(stringMinVein);
+            System.out.println(stringMaxVein);
+            System.out.println(stringPerChunk);
+
+
+                if (containsBiome) {
+                    String biome1 = blockArray.substring(blockArray.indexOf("-biome:")).replace("-biome:", "");
+                    String biome2 = biome1.contains(" -") ? biome1.substring(0, biome1.indexOf(" ")) : biome1.replace(";", "");
+                    if (!biome2.contains("|")) {
+                        BiomeID = Integer.parseInt(biome2);
+                        //System.out.println(biome2);
+                    } else if (biome2.contains("|")) {
+                        String[] biome3 = biome2.split("\\|");
+                        for (String biome : biome3) {
+                            BiomeID = Integer.parseInt(biome);
+                            //System.out.println("biome:" + biome);
+                        }
+                    }
+                }
+
+                if (containsDim) {
+                    String dim1 = blockArray.substring(blockArray.indexOf("-dimension:")).replace("-dimension:", "");
+                    String dim2 = dim1.contains(" -") ? dim1.substring(0, dim1.indexOf(" ")) : dim1.replace(";", "");
+                    if (!dim2.contains("|")) {
+                        DimensionID = Integer.parseInt(dim2);
+                        //System.out.println(dim2);
+                    } else if (dim2.contains("|")) {
+                        String[] dim3 = dim2.split("\\|");
+                        for (String dim : dim3) {
+                            DimensionID = Integer.parseInt(dim);
+                            //System.out.println("dimension:" + dim);
+                        }
+                    }
+                }
+
+                if (containsReplace) {
+                    String replace1 = blockArray.substring(blockArray.indexOf("-replace:")).replace("-replace:", "");
+                    String replace2 = replace1.contains(" -") ? replace1.substring(0, replace1.indexOf(" ")) : replace1.replace(";", "");
+                    if (!replace2.contains("|")) {
+                        String replaceMetaString = !replace2.contains("-meta:") ? "-meta:0" : replace2.substring(replace2.indexOf("-meta:"));
+                        String replaceMetaDigit = CharMatcher.DIGIT.retainFrom(replaceMetaString);
+                        int replaceMeta = Integer.parseInt(replaceMetaDigit);
+
+                        String replaceString = !replace2.contains("-meta:") ? replace2 : StringUtils.substringBefore(replace2, "-meta:");
+                        //System.out.println("Metadata is:" + replaceMeta + ", The Block is:" + replaceString);
+
+                        Block theBlock = Block.getBlockFromName(replaceString);
+                        if (theBlock != null) {
+                            BlockReplace = theBlock.getStateFromMeta(replaceMeta);
+                        }
+                    }
+                    /* else if (replace2.contains("|")) {
+                        String[] replace3 = replace2.split("\\|");
+                        for (String replace4 : replace3) {
+                            //System.out.println("The Array is: " + replace4);
+                            String replaceMetaString = !replace4.contains("-meta:") ? "-meta:0" : replace4.substring(replace4.indexOf("-meta:"));
+                            String replaceMetaDigit = CharMatcher.DIGIT.retainFrom(replaceMetaString);
+                            //System.out.println("The Meta String: " + replaceMetaString);
+                            //System.out.println("The Meta Digit: " + replaceMetaDigit);
+                            int replaceMeta = Integer.parseInt(replaceMetaDigit);
+
+                            String replaceString = !replace4.contains("-meta:") ? replace4 : StringUtils.substringBefore(replace4, "-meta:");
+                            //System.out.println("Metadata is:" + replaceMeta + ", The Block is:" + replaceString);
+
+                            Block theBlock = Block.getBlockFromName(replaceString);
+                            if (theBlock != null) {
+                                BlockReplace = theBlock.getStateFromMeta(replaceMeta);
+                            }
+                        }
+                    }*/
 }
